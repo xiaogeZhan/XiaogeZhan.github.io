@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Project:Hands-On Apache Airflow, Xiaoge Zhang">
     <meta name="description" content="Handson Airflow
-">
+Install Apache Airflow with Docker
+Open terminal or CMD and go into Documents&amp;#x2F;materialscd ~/Documen">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -406,6 +407,22 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><strong>Handson Airflow</strong></p>
+<p>Install Apache Airflow with Docker</p>
+<p>Open terminal or CMD and go into Documents&#x2F;materials<br><code>cd ~/Documents/</code><br><code>cd Documents/materials</code></p>
+<p>Key Takeaways</p>
+<ul>
+<li><p>Airflow is an orchestrator, not a processing framework. Process your gigabytes of data outside of Airflow (i.e. You have a Spark cluster, you use an operator to execute a Spark job, and the data is processed in Spark).</p>
+</li>
+<li><p>A DAG is a data pipeline, an Operator is a task.</p>
+</li>
+<li><p>An Executor defines how your tasks are executed, whereas a worker is a process executing your task</p>
+</li>
+<li><p>The Scheduler schedules your tasks, the web server serves the UI, and the database stores the metadata of Airflow.</p>
+</li>
+</ul>
+<p>See all Commands:<br><code>airflow -h</code><br>    Commands:<br>      cheat-sheet    Display cheat sheet<br>      dag-processor  Start a standalone Dag Processor instance<br>      info           Show information about current Airflow and environment<br>      kerberos       Start a kerberos ticket renewer<br>      plugins        Dump information about loaded plugins<br>      rotate-fernet-key Rotate encrypted connection credentials and variables<br>      scheduler      Start a scheduler instance<br>      standalone     Run an all-in-one copy of Airflow<br>      sync-perm      Update permissions for existing roles and optionally DAGs<br>      triggerer      Start a triggerer instance<br>      version        Show the version<br>      webserver      Start a Airflow webserver instance</p>
+<p><code>airflow tasks test user_processing create_table 2023-02-07</code></p>
+<p>Reference:<br><a target="_blank" rel="noopener" href="https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/learn/lecture/23704726#overview">https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/learn/lecture/23704726#overview</a></p>
 
                 
             </div>

@@ -1,0 +1,1804 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Project:Telco Customer Churn, Xiaoge Zhang">
+    <meta name="description" content="
+
+IntroductionWhat is Customer Churn and Why is it Important for companies?
+Customer churn is the percentage of customer">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Project:Telco Customer Churn | Xiaoge Zhang</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/ABoutme/profile.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Xiaoge Zhang</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/ABoutme/profile.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Xiaoge Zhang</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://blinkfox.github.io/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://blinkfox.github.io/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Project:Telco Customer Churn</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Project/">
+                                <span class="chip bg-color">Project</span>
+                            </a>
+                        
+                            <a href="/tags/Data-Anlysis/">
+                                <span class="chip bg-color">Data Anlysis</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2023-02-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <img src="/medias/Project_Bike/Bike.png" class="img-large" alt="">
+
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><strong>What is Customer Churn and Why is it Important for companies?</strong></p>
+<p>Customer churn is the percentage of customers that stopped using any company’s product or service during a certain time frame. We can calculate churn rate by dividing the number of customers we lost during that time period by the number of customers we had at the beginning of that time period.</p>
+<p>For example, if the company starts the quarter with 400 customers and ends with 380, the churn rate is 5% because the company lost 5% of the total customers. Obviously, the company should aim for a churn rate that is as close to 0% as possible.</p>
+<p>In order to achieve that, the company must know at all times what the churn rate is, and treat it as its top priority.</p>
+<h1 id="Telco-Customer-Churn-Dataset"><a href="#Telco-Customer-Churn-Dataset" class="headerlink" title="Telco Customer Churn Dataset"></a>Telco Customer Churn Dataset</h1><p><strong>The Telco Customer Churn dataset</strong> contains information about a fictional Telco company that provides home phone and Internet services to 7043 Customers in California in Q3. It Indicates which customers have left , stayed , or signed up for their services.</p>
+<p>As part of the final project, we are interested in finding the factors which can strongly predict the churn value for Telco. Various hypothesis tests are to be used to answer the questions and a model is to be built to predict whether the customer will be churned or not given the details related to the Customer demographics , account information and the services the Customer has signed up for.</p>
+<p>Through our Analysis , Telco can predict the behavior to retain Customers and further develop focused Customer Retention Programs.</p>
+<p><strong>This data set includes information about:</strong></p>
+<ul>
+<li>Customers who left within the last month – the column is called <code>Churn</code></li>
+<li>Services that each customer has signed up for – <code>phone</code>, <code>multiple lines</code>, <code>internet</code>, <code>online security</code>, <code>online backup</code>, <code>device protection</code>, <code>tech support</code>, and <code>streaming TV</code> and <code>movies</code></li>
+<li>Customer account information – how long they’ve been a customer, <code>contract</code>, <code>payment method</code>, <code>paperless billing</code>, <code>monthly charges</code>, and <code>total charges</code></li>
+<li>Demographic info about customers – <code>gender</code>, <code>age range</code>, and if they have <code>partners</code> and <code>dependents</code></li>
+</ul>
+<h1 id="Understanding-the-Dataset"><a href="#Understanding-the-Dataset" class="headerlink" title="Understanding the Dataset"></a>Understanding the Dataset</h1><p>This dataset was taken from the Kaggle platform and has information about the Customer data and different types of Home and Internet services they have signed up for from the Company.</p>
+<p>It has a total of <strong>7043 records and 21 columns</strong>. This dataset contains both numerical and categorical types of data.<br><img src="/medias/Telco/Picture1.png" class="img-large" alt=""></p>
+<img src="/medias/Telco/Picture2.png" class="img-large" alt="">
+
+<p><strong>Description of the variables&#x2F;features in the dataset:</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Sr. No.</strong></th>
+<th><strong>Feature</strong></th>
+<th><strong>Dictionary</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.</td>
+<td>Gender</td>
+<td>The customer’s gender: Male, Female</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Senior Citizen</td>
+<td>Indicates if the customer is 65 or older: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Partner</td>
+<td>Indicates if the customer is married or not.</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>Dependents</td>
+<td>Indicates if the customer lives with any dependents: Yes, No.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5.</td>
+<td>Tenure</td>
+<td>Indicates the total amount of Tenure (In months) that the customer has been with the company by the end of the quarter</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6.</td>
+<td>Phone Service</td>
+<td>Indicates if the customer subscribes to home phone service with the company: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7.</td>
+<td>Multiple Lines</td>
+<td>Indicates if the customer subscribes to multiple telephone lines with the company: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8.</td>
+<td>Internet Service</td>
+<td>Indicates if the customer subscribes to Internet service with the company: No, DSL, Fiber Optic, Cable</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9.</td>
+<td>Online Security</td>
+<td>Indicates if the customer subscribes to an additional online security service provided by the company: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10.</td>
+<td>Online Backup</td>
+<td>Indicates if the customer subscribes to an additional online backup service provided by the company: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11.</td>
+<td>Device Protection</td>
+<td>Indicates if the customer subscribes to an additional device protection plan for their Internet equipment provided by the company: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>12.</td>
+<td>Tech Support</td>
+<td>Indicates if the customer subscribes to an additional technical support plan from the company with reduced wait times: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13.</td>
+<td>Streaming TV</td>
+<td>Indicates if the customer uses their Internet service to stream television programing from a third party provider: Yes, No. The company does not charge an additional fee for this service.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>14.</td>
+<td>Streaming Movies</td>
+<td>Indicates if the customer uses their Internet service to stream movies from a third party provider: Yes, No. The company does not charge an additional fee for this service.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15.</td>
+<td>Contract</td>
+<td>Indicates the customer’s current contract type: Month-to-Month, One Year, Two Year.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16.</td>
+<td>Paperless Billing</td>
+<td>Indicates if the customer has chosen paperless billing: Yes, No</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>17.</td>
+<td>Payment Method</td>
+<td>Indicates how the customer pays their bill: Bank Withdrawal, Credit Card, Mailed Check</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>18.</td>
+<td>Monthly Charges</td>
+<td>Indicates the customer’s current total monthly charge for all their services from the company.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>19.</td>
+<td>Total Charges</td>
+<td>Indicates the customer’s total charges, calculated to the end of the quarter .</td>
+</tr>
+<tr>
+<td>20.</td>
+<td>Churn</td>
+<td>Yes &#x3D; the customer left the company this quarter. No &#x3D; the customer remained with the company. Directly related to Churn Value</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>21.</td>
+<td>Customer ID</td>
+<td>A unique ID that identifies each customer.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="Questions-plan-to-answer-through-Analysis"><a href="#Questions-plan-to-answer-through-Analysis" class="headerlink" title="Questions plan to answer through Analysis:"></a>Questions plan to answer through Analysis:</h1><ul>
+<li>What are the factors&#x2F;services that would help predict the Customer Churn ?</li>
+<li>Do any of the Services that Customer has signed up for contribute to the Customer Churn ? (e.g -<code>Online Security</code> , <code>Tech Support</code> , <code>Streaming movies</code> etc.)</li>
+<li>Does demographic information of Customers (example - <code>Gender</code> , <code>Senior Citizen</code> , <code>Dependents</code> etc.) contribute to Customer churn rate ?</li>
+<li>Are Customers with less <code>tenure</code> more likely to be <code>Churned</code> ?</li>
+<li>Is the average <code>total charge</code> same across all the types of internet service?</li>
+<li>Are the churned customers independent of the <code>contract type</code>?</li>
+</ul>
+<h1 id="Methods-plan-to-implement-during-Analysis"><a href="#Methods-plan-to-implement-during-Analysis" class="headerlink" title="Methods plan to implement during Analysis:"></a>Methods plan to implement during Analysis:</h1><ul>
+<li>One Way Anova , Two –Way Anova</li>
+<li>Chi-Square</li>
+<li>Best Subset regression method</li>
+<li>Logistic Regression</li>
+</ul>
+<h1 id="Data-Cleaning"><a href="#Data-Cleaning" class="headerlink" title="Data Cleaning"></a>Data Cleaning</h1><p>Below is the structure of the Raw Dataset<br><img src="/medias/Telco/Picture35.png" class="img-large" alt=""></p>
+<p>Let’s check the missing values for each attribute<br><img src="/medias/Telco/Picture51.png" class="img-large" alt=""></p>
+<p>Observations:</p>
+<p>From the above output , we can observe that there are a total <strong>11</strong> missing values for the TotalCharges feature. However , there is no missing value for any other attribute of the dataset.</p>
+<p><strong>Now , let’s handle the missing records for TotalCharges by replacing the missing values with their respective Mean and check if any missing values again in the dataframe -</strong><br><img src="/medias/Telco/Picture52.png" class="img-large" alt=""></p>
+<p>Also ,As we can see from the dataset , column – <strong>Customer ID</strong> is not required or significant for our analysis , hence we would drop it .<br>Further , some of the features in the dataset have values - <strong>Yes &amp; No</strong> , so we would Recode the variables - <strong><code>Churn </code>, <code>Partner</code> , <code>Dependents</code> , <code>PhoneService &amp; PaperlessBilling</code></strong> to <strong>1 &amp; 0</strong> respectively and make them numeric features.</p>
+<p>Below is the structure of the final Dataset after above changes :<br><img src="/medias/Telco/Picture53.png" class="img-large" alt=""></p>
+<h3 id="Descriptive-Characteristics-of-the-Dataset"><a href="#Descriptive-Characteristics-of-the-Dataset" class="headerlink" title="Descriptive Characteristics of the Dataset"></a>Descriptive Characteristics of the Dataset</h3><p>Descriptive Statistics (N, mean , median , Standard deviation, min , max , range etc.) for the entire dataset using the Describe function :</p>
+<img src="/medias/Telco/Picture3.png" class="img-large" alt="">
+
+<p>We can understand the following observations from above –</p>
+<ol>
+<li>The mean of the <code>Monthly Charges</code> is $64.76, the minimum value is $18.25 and maximum is $118.75 with a standard deviation of 30.09</li>
+<li>The mean of the <code>？Monthly Charges </code>is $2283.30, the minimum value is $18.80 and maximum is $8684.80 with a standard deviation of 2265.</li>
+<li>The mean <code>Churn</code> value is 0.26 with standard deviation of 0.44</li>
+<li>The mean <code>Tenure</code> is 32.37 , the minimum value is 0 and maximum is 72 months with a standard deviation of 24.55</li>
+</ol>
+<h3 id="Correlation-Plot-amp-Check-for-MultiCollinearity"><a href="#Correlation-Plot-amp-Check-for-MultiCollinearity" class="headerlink" title="Correlation Plot &amp; Check for MultiCollinearity"></a>Correlation Plot &amp; Check for MultiCollinearity</h3><p>Lets understand the correlation between all the numeric features of this dataset with the help of correlation plot &amp; Matrix</p>
+<img src="/medias/Telco/Picture4.png" class="img-large" alt="">
+
+<p>Correlation Matrix</p>
+ <img src="/medias/Telco/Picture5.png" class="img-large" alt="">
+
+<p>Observations:</p>
+<ol>
+<li>From the above Correlation plot &amp; Matrix , we can observe that the Target Variable – <code>Churn</code> is positively correlated with variables – <code>Monthly Charges</code> with 0.193 correlation value followed by <code>Paperless Billing</code> with value 0.191</li>
+<li>The target variable - <code>Churn</code> is negatively correlated with feature - <code>Tenure</code> with value of -0.35</li>
+<li>Further, we can also see that the <strong><code>Monthly charges</code></strong> feature is highly correlated with the <strong><code>Total Charges</code></strong> with 0.65 correlation value.</li>
+<li>Also , <code>Tenure</code> feature is highly correlated with the <code>Total Charges</code> with 0.82 correlation value.</li>
+</ol>
+<h1 id="Exploratory-Data-Analysis"><a href="#Exploratory-Data-Analysis" class="headerlink" title="Exploratory Data Analysis:"></a>Exploratory Data Analysis:</h1><ol>
+<li><strong>Does the gender attribute of a customer have an impact on the customer churn?</strong><img src="/medias/Telco/Picture6.png" class="img-large" alt="">
+<img src="/medias/Telco/Picture7.png" class="img-large" alt=""></li>
+</ol>
+<p>From the above graphs, we are able to infer that the churn rate is the same for both male and female customers and there is no impact of gender found in the churn rate.</p>
+<ol start="2">
+<li><strong>Do senior citizens have more likelihood to churn?</strong><img src="/medias/Telco/Picture8.png" class="img-large" alt="">
+<img src="/medias/Telco/Picture9.png" class="img-large" alt=""></li>
+</ol>
+<p>From the above graphs, it can be observed that there are a very less number of senior citizens signed up as a customer than the young&#x2F;middle aged people. With respect to customer churn rate, the percentage of senior citizens churned is greater than the percentage of young&#x2F;middle aged people.</p>
+   <img src="/medias/Telco/Picture10.png" class="img-large" alt="">
+   
+<p>Thus, it can be inferred that the company is only able to retain around 60% of the Senior citizens and the remaining 40% of the Senior citizens have left the company. Compared to young&#x2F;middle aged people, senior citizens have more likelihood to churn.</p>
+<ol start="3">
+<li><p><strong>Are the customers having a longer tenure with the company less likely to churn?</strong></p>
+<img src="/medias/Telco/Picture11.png" class="img-large" alt=""></li>
+</ol>
+<p>From the above graph, it can be inferred that as a customer has a longer tenure with the company, there is a reduction in the likelihood to churn.</p>
+<ol start="4">
+<li><p><strong>Which contract type has the most number of churns?</strong></p>
+<img src="/medias/Telco/Picture12.png" class="img-large" alt=""></li>
+</ol>
+<p>The customers with a contract type of <code>Month-to-month</code> are more likely to churn than the customers with other contract types.</p>
+   <img src="/medias/Telco/Picture13.png" class="img-large" alt="">
+
+<p>The number of customers having a <code>Two-year contract type</code> with a longer tenure period are comparatively greater and hence two-year contract type can result in lesser number of customers getting churned.</p>
+<p>The number of customers having a Month-to-month contract type with a longer tenure period are comparatively lesser and hence Month-to-month contract type can result in more number of customers getting churned.</p>
+<ol start="5">
+<li><p><strong>Which Internet service contributes to the maximum number of churned customers?</strong></p>
+<img src="/medias/Telco/Picture14.png" class="img-large" alt=""></li>
+</ol>
+<p>From the above graph, it can be observed that the customers opting for an internet service type of Fiber optic, are more likely to churn than with other internet services.</p>
+<h2 id="Methods-Chi-Square-test-of-independence"><a href="#Methods-Chi-Square-test-of-independence" class="headerlink" title="Methods - Chi Square (test of independence)"></a>Methods - Chi Square (test of independence)</h2><ol>
+<li><strong>Are the churned customers independent of the contract type?</strong></li>
+</ol>
+<p>（1）State the hypotheses<br>Null Hypothesis: No. of churned customers are independent of the contract type attribute.<br>Alternate Hypothesis: No. of churned customers are dependent on the contract type attribute.</p>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Create table<br>Creating a table to get the number of customers for each contract type and churn attribute.</p>
+<p>（4）Compute the test value<br><img src="/medias/Telco/Picture15-chisquare.png" class="img-large" alt=""></p>
+<p>（5）Summarize the results<br>Conclusion : The p-value is lesser than the significance level 0.05, thus we can reject the null hypothesis and conclude that the number of churned customers are dependent on the contract type attribute.</p>
+<ol start="2">
+<li><strong>Churn &amp; PhoneService</strong></li>
+</ol>
+<p>（1）State the hypotheses<br>H0: There is no relationship between PhoneService and churn<br>H1: There is a relationship between PhoneService and churn<br>(significant level of 0.05)</p>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Compute the test value<br><img src="/medias/Telco/Picture15.png" class="img-large" alt=""></p>
+<p>（4）Summarize the results<br>Since the p-value (0.3388) is greater than the significance level of 0.05, we do not reject H0. There is not sufficient evidence that supports there is a relationship between PhoneService and churn.</p>
+<ol start="3">
+<li><strong>Churn &amp; Gender</strong></li>
+</ol>
+<p>（1）State the hypotheses<br>H0: There is no relationship between gender and churn<br>H1: There is a relationship between gender and churn<br>(significant level of 0.05)</p>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Compute the test value<br><img src="/medias/Telco/Picture16.png" class="img-large" alt=""></p>
+<p>（4）Summarize the results<br>Since the p-value (0.4866) is greater than the significance level of 0.05, we do not reject H0. There is not sufficient evidence that supports there is a relationship between gender and churn.</p>
+<ol start="4">
+<li><strong>Churn &amp; Partner</strong><br>（1）State the hypotheses<br>H0: There is no relationship between partner and churn<br>H1: There is a relationship between partner and churn</li>
+</ol>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Compute the test value<br><img src="/medias/Telco/Picture17.png" class="img-large" alt=""></p>
+<p>（4）Summarize the results<br>Since the p-value (0.000) is less than the significance level of 0.05, we reject H0. There is sufficient evidence that supports there is a relationship between partner and churn.</p>
+<ol start="5">
+<li><strong>Churn &amp; Tenure</strong><br>（1）State the hypotheses<br>H0: There is no difference in the duration of tenure.<br>H1: There is a difference in the duration of tenure.</li>
+</ol>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Compute the test value<br><img src="/medias/Telco/Picture18.png" class="img-large" alt=""></p>
+<p>（4）Summarize the results<br>Since the p-value (0.000) is less than the significance level of 0.05, we reject H0. There is a difference in the duration of tenure. The duration of tenure is less than the mean that the customer churn is 38%, and the duration of tenure is more than the mean that the customer churn is 18.1%. So Customers with less tenure are more likely to be Churned.</p>
+<h2 id="One-way-ANOVA"><a href="#One-way-ANOVA" class="headerlink" title="One-way ANOVA"></a>One-way ANOVA</h2><h3 id="1-Is-the-average-total-charge-same-across-all-the-types-of-internet-service"><a href="#1-Is-the-average-total-charge-same-across-all-the-types-of-internet-service" class="headerlink" title="1. Is the average total charge same across all the types of internet service?"></a>1. <strong>Is the average total charge same across all the types of internet service?</strong></h3><p>（1）State the hypotheses<br>Null Hypothesis: The mean total charge is the same for all types of internet service.<br>Alternate Hypothesis: The mean total charge is different for all types of internet service.</p>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Create data frame</p>
+<img src="/medias/Telco/Picture19.png" class="img-large" alt="">
+
+<p>Forming a data frame to hold the total chargers for each type of internet service.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">dsl <span class="operator">&lt;-</span> sqldf<span class="punctuation">(</span><span class="string">&quot;select * from telco_df where InternetService = &#x27;DSL&#x27;&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">fo <span class="operator">&lt;-</span> sqldf<span class="punctuation">(</span><span class="string">&quot;select * from telco_df where InternetService = &#x27;Fiber optic&#x27;&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">no <span class="operator">&lt;-</span> sqldf<span class="punctuation">(</span><span class="string">&quot;select * from telco_df where InternetService = &#x27;No&#x27;&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">dsl_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> dsl<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                     <span class="string">&#x27;Internet_Service&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;DSL&#x27;</span><span class="punctuation">,</span>nrow<span class="punctuation">(</span>dsl<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                     stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">fo_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> fo<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                    <span class="string">&#x27;Internet_Service&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;Fiber optic&#x27;</span><span class="punctuation">,</span>nrow<span class="punctuation">(</span>fo<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                    stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">no_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> no<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                    <span class="string">&#x27;Internet_Service&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;No&#x27;</span><span class="punctuation">,</span>nrow<span class="punctuation">(</span>no<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                    stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># Combine the dataframes into one</span></span><br><span class="line">df <span class="operator">&lt;-</span> rbind<span class="punctuation">(</span>dsl_df<span class="punctuation">,</span> fo_df<span class="punctuation">,</span> no_df<span class="punctuation">)</span></span><br><span class="line">df<span class="operator">$</span>Internet_Service <span class="operator">&lt;-</span> as.factor<span class="punctuation">(</span>df<span class="operator">$</span>Internet_Service<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>（4）Compute the test value<br>Running the one-way ANOVA test using aov() function:<br><img src="/medias/Telco/Picture20.png" class="img-large" alt=""></p>
+<p>（5）Summarize the results<br>The p-value is lesser than the significance level 0.05, thus we can reject the null hypothesis and conclude that the average total charge is different for all types of internet service.</p>
+<p>Tukey test can be used to identify the pair of internet services which have a significantly different mean.</p>
+<img src="/medias/Telco/Picture20.png" class="img-large" alt="">
+
+<img src="/medias/Telco/Picture21.png" class="img-large" alt="">
+
+<p>From the above graph, we are able to observe that Fiber optic - DSL internet service pair has a significant mean difference than the remaining pairs.</p>
+<h3 id="2-Is-the-mean-total-charges-for-each-contract-type-the-same"><a href="#2-Is-the-mean-total-charges-for-each-contract-type-the-same" class="headerlink" title="2. Is the mean total charges for each contract type the same?"></a>2. <strong>Is the mean total charges for each contract type the same?</strong></h3><p>（1）State the hypotheses<br>Null Hypothesis: The mean total charges for each contract type are the same.<br>Alternate Hypothesis: The mean total charges for at least one contract type is different.</p>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Create data frame<br>Forming a data frame to hold the total chargers for each type of contract.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">month_to_month <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>telco_df<span class="operator">$</span>Contract <span class="operator">==</span> <span class="string">&#x27;Month-to-month&#x27;</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">one_year <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>telco_df<span class="operator">$</span>Contract <span class="operator">==</span> <span class="string">&#x27;One year&#x27;</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">two_year <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>telco_df<span class="operator">$</span>Contract <span class="operator">==</span> <span class="string">&#x27;Two year&#x27;</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line">month_to_month_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> month_to_month<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                                <span class="string">&#x27;Contract&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;Month-to-month&#x27;</span><span class="punctuation">,</span> nrow<span class="punctuation">(</span>month_to_month<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                                stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">one_year_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> one_year<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                          <span class="string">&#x27;Contract&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;One year&#x27;</span><span class="punctuation">,</span> nrow<span class="punctuation">(</span>one_year<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                          stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">two_year_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> two_year<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                          <span class="string">&#x27;Contract&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;Two year&#x27;</span><span class="punctuation">,</span> nrow<span class="punctuation">(</span>two_year<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                          stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Combine the dataframes into one</span></span><br><span class="line">df <span class="operator">&lt;-</span> rbind<span class="punctuation">(</span>month_to_month_df<span class="punctuation">,</span> one_year_df<span class="punctuation">,</span> two_year_df<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">df<span class="operator">$</span>Contract <span class="operator">&lt;-</span> as.factor<span class="punctuation">(</span>df<span class="operator">$</span>Contract<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>（4）Compute the test value<br>Running the one-way ANOVA test using aov() function:<br><img src="/medias/Telco/Picture22-anova.png" class="img-large" alt=""></p>
+<p>（5）Summarize the results<br>The p-value is lesser than the significance level 0.05, thus we can reject the null hypothesis and conclude that the average total charge is different for all types of contract.</p>
+<h3 id="3-Is-the-mean-total-charges-for-each-PaymentMethod-are-the-same"><a href="#3-Is-the-mean-total-charges-for-each-PaymentMethod-are-the-same" class="headerlink" title="3. Is the mean total charges for each PaymentMethod are the same?"></a>3. <strong>Is the mean total charges for each PaymentMethod are the same?</strong></h3><p>（1）State the hypotheses<br>Null Hypothesis: There is no difference in the mean Total Charges for different Payment Methods.<br>Alternate Hypothesis: There is a difference in the mean Total Charges for different Payment Methods.</p>
+<p>（2）Set significance level</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha <span class="operator">&lt;-</span> 0.05</span><br></pre></td></tr></table></figure>
+
+<p>（3）Create data frame<br>Forming a data frame to hold the total chargers for each type of contract.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">electronic_check <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>telco_df<span class="operator">$</span>PaymentMethod <span class="operator">==</span> <span class="string">&#x27;Electronic check&#x27;</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">mailed_check <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>telco_df<span class="operator">$</span>PaymentMethod <span class="operator">==</span> <span class="string">&#x27;Mailed check&#x27;</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">bank_transfer <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>telco_df<span class="operator">$</span>PaymentMethod <span class="operator">==</span> <span class="string">&#x27;Bank transfer (automatic)&#x27;</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line">credit_card <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>telco_df<span class="operator">$</span>PaymentMethod <span class="operator">==</span> <span class="string">&#x27;Credit card (automatic)&#x27;</span><span class="punctuation">,</span> <span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line">electronic_check_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> electronic_check<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                                  <span class="string">&#x27;PaymentMethod&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;Electronic check&#x27;</span><span class="punctuation">,</span> nrow<span class="punctuation">(</span>electronic_check<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                                  stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">mailed_check_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> mailed_check<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                              <span class="string">&#x27;PaymentMethod&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;Mailed check&#x27;</span><span class="punctuation">,</span> nrow<span class="punctuation">(</span>mailed_check<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                              stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">bank_transfer_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> bank_transfer<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                               <span class="string">&#x27;PaymentMethod&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;Bank transfer (automatic)&#x27;</span><span class="punctuation">,</span> nrow<span class="punctuation">(</span>bank_transfer<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                               stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">credit_card_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span><span class="string">&#x27;total_charges&#x27;</span> <span class="operator">=</span> credit_card<span class="operator">$</span>TotalCharges<span class="punctuation">,</span></span><br><span class="line">                             <span class="string">&#x27;PaymentMethod&#x27;</span> <span class="operator">=</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="string">&#x27;Credit card (automatic)&#x27;</span><span class="punctuation">,</span> nrow<span class="punctuation">(</span>credit_card<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                             stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Combine the dataframes into one</span></span><br><span class="line">df <span class="operator">&lt;-</span> rbind<span class="punctuation">(</span>electronic_check_df<span class="punctuation">,</span> mailed_check_df<span class="punctuation">,</span> bank_transfer_df<span class="punctuation">,</span> credit_card_df<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">df<span class="operator">$</span>PaymentMethod <span class="operator">&lt;-</span> as.factor<span class="punctuation">(</span>df<span class="operator">$</span>PaymentMethod<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>（4）Compute the test value<br>Running the one-way ANOVA test using aov() function:<br><img src="/medias/Telco/Picture22.png" class="img-large" alt=""></p>
+<p>（5）Summarize the results<br>The p-value is lesser than the significance level 0.05, thus we can reject the null hypothesis and conclude that the average total charge is different for all types of Payment Methods.</p>
+<h2 id="Two-way-ANOVA-test"><a href="#Two-way-ANOVA-test" class="headerlink" title="Two-way ANOVA test"></a>Two-way ANOVA test</h2><p><strong>Churn &amp; SeniorCitizen, Dependents</strong></p>
+<p>（1）State the hypotheses<br>Dependent variable: churn<br>Independent variables: SeniorCitizen and Dependents</p>
+<p>H0: SeniorCitizen and Dependents have no impact on churn<br>H1: SeniorCitizen and Dependents have an impact on churn</p>
+<p>（2）Set significance level<br>alpha &lt;- 0.05</p>
+<p>（3）Compute the test value<br><img src="/medias/Telco/Picture23-twoanova.png" class="img-large" alt=""></p>
+<p>（4）Summarize the results<br>Since the p-value dependents (&lt;0.0000) are less than the significance level of 0.05, and the p-value senior citizen (&lt;0.000) is less than the significance level of 0.05, we reject H0. There is sufficient evidence that supports SeniorCitizen and Dependents have an impact on churn.</p>
+<p>In conclusion, demographic information of SeniorCitizen, Dependents, and Partners will affect customers’ churn rate. Gender has no relationship with churn.</p>
+<h2 id="Splitting-the-data-into-a-train-and-test-set"><a href="#Splitting-the-data-into-a-train-and-test-set" class="headerlink" title="Splitting the data into a train and test set"></a>Splitting the data into a train and test set</h2><p>To separate the data into train and test set to a 70&#x2F;30 split where 70% of the random observations are used for the training set and 30% is used for testing, I have used the createDataPartition() function from the ‘caret’ package</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Split the dataset into Test and Train data#</span></span><br><span class="line">set.seed<span class="punctuation">(</span><span class="number">123</span><span class="punctuation">)</span></span><br><span class="line">trainIndex <span class="operator">&lt;-</span> createDataPartition<span class="punctuation">(</span>telco_df<span class="operator">$</span>Churn<span class="punctuation">,</span> p <span class="operator">=</span> <span class="number">0.70</span><span class="punctuation">,</span> <span class="built_in">list</span> <span class="operator">=</span> <span class="literal">FALSE</span> <span class="punctuation">,</span> times<span class="operator">=</span><span class="number">1</span> <span class="punctuation">)</span></span><br><span class="line">telco_df_train <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span>trainIndex<span class="punctuation">,</span><span class="punctuation">]</span></span><br><span class="line">telco_df_test <span class="operator">&lt;-</span> telco_df<span class="punctuation">[</span><span class="operator">-</span>trainIndex<span class="punctuation">,</span><span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Define the Target variable for Train and Test Data set</span></span><br><span class="line">y_train <span class="operator">&lt;-</span> telco_df_train<span class="operator">$</span>Churn</span><br><span class="line">y_test<span class="operator">&lt;-</span> telco_df_test<span class="operator">$</span>Churn</span><br></pre></td></tr></table></figure>
+
+<h2 id="Subset-Regression-Method"><a href="#Subset-Regression-Method" class="headerlink" title="Subset Regression Method"></a>Subset Regression Method</h2><p>This method helps in the model selection process which tests all the possible combinations of the independent&#x2F;explanatory variables and eventually helps in identifying the best possible Model using the regsubsets function from the leaps package.<br><img src="/medias/Telco/Picture23.png" class="img-large" alt=""></p>
+<p><strong>Observation</strong>: The above plot function shows the attributes from the subset Regression method that can be selected for the best Model and are ranked as per their adjusted R-square value.</p>
+<p>Below are the Final 9 predictors identified using the Subset Regression Method-</p>
+<ul>
+<li>MultipleLines-No</li>
+<li>OnlineSecurity-Yes</li>
+<li>TechSupport-Yes</li>
+<li>Contract- One year, Two Year</li>
+<li>PaperlessBilling</li>
+<li>PaymentMethod- Electronic</li>
+<li>MonthlyCharges</li>
+<li>Total Charges</li>
+</ul>
+<p>Let us build the models using different algorithms using Glm Logistic regression, Stepwise selection, Ridge, Lasso for predicting the customer churn and select the best model by comparing various metrics like AIC, BIC, RMSE etc.,</p>
+<h2 id="Logistic-Regression-Model-Using-GLM"><a href="#Logistic-Regression-Model-Using-GLM" class="headerlink" title="Logistic Regression Model Using GLM"></a>Logistic Regression Model Using GLM</h2><img src="/medias/Telco/Picture24-logistic.png" class="img-large" alt="">
+
+<p>In the logistic regression model, I first used all the variables to create the model. According to the summary of the model, tenure, PhoneService, OnlineSecurity, DeviceProtection, TechSupport, PaperlessBilling, MonthlyCharges, TotalCharges, SeniorCitizen are significant variables. So in the next step, I will choose these variables to build a new model.</p>
+<img src="/medias/Telco/Picture24.png" class="img-large" alt="">
+
+<p>From the summary of the new model, I can see all the variables are significant now, and this is maybe a better model. In the following steps, I will use a confusion matrix to calculate the accuracy of the model.Use the confusion matrix to see if the model is a good one.</p>
+<img src="/medias/Telco/Picture25.png" class="img-large" alt="">
+
+<p>By looking at the confusion matrix, I observed an accuracy of 80.12% for this model.I don’t think this number is that high, so I want to try to improve the accuracy of the model by removing outliers.</p>
+<h2 id="Outliers-Identification-amp-Removal"><a href="#Outliers-Identification-amp-Removal" class="headerlink" title="Outliers Identification &amp; Removal"></a>Outliers Identification &amp; Removal</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#replace outliers with mean (tenure, MonthlyCharges,TotalCharges)</span></span><br><span class="line">high <span class="operator">&lt;-</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>tenure<span class="punctuation">)</span> <span class="operator">+</span> sd<span class="punctuation">(</span>telco_df<span class="operator">$</span>tenure<span class="punctuation">)</span> <span class="operator">*</span> <span class="number">3</span></span><br><span class="line">low <span class="operator">&lt;-</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>tenure<span class="punctuation">)</span> <span class="operator">-</span> sd<span class="punctuation">(</span>telco_df<span class="operator">$</span>tenure<span class="punctuation">)</span> <span class="operator">*</span> <span class="number">3</span></span><br><span class="line">telco_df<span class="operator">$</span>Outlier <span class="operator">&lt;-</span> <span class="punctuation">(</span>telco_df<span class="operator">$</span>tenure <span class="operator">&lt;</span> low <span class="operator">|</span> telco_df<span class="operator">$</span>tenure <span class="operator">&gt;</span> high<span class="punctuation">)</span></span><br><span class="line">telco_df<span class="operator">$</span>tenure<span class="punctuation">[</span>telco_df<span class="operator">$</span>outlier<span class="punctuation">]</span> <span class="operator">=</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>tenure<span class="punctuation">[</span><span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>telco_df<span class="operator">$</span>outlier<span class="punctuation">)</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">high <span class="operator">&lt;-</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>MonthlyCharges<span class="punctuation">)</span> <span class="operator">+</span> sd<span class="punctuation">(</span>telco_df<span class="operator">$</span>MonthlyCharges<span class="punctuation">)</span> <span class="operator">*</span> <span class="number">3</span></span><br><span class="line">low <span class="operator">&lt;-</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>MonthlyCharges<span class="punctuation">)</span> <span class="operator">-</span> sd<span class="punctuation">(</span>telco_df<span class="operator">$</span>MonthlyCharges<span class="punctuation">)</span> <span class="operator">*</span> <span class="number">3</span></span><br><span class="line">telco_df<span class="operator">$</span>Outlier <span class="operator">&lt;-</span> <span class="punctuation">(</span>telco_df<span class="operator">$</span>MonthlyCharges <span class="operator">&lt;</span> low <span class="operator">|</span> telco_df<span class="operator">$</span>MonthlyCharges <span class="operator">&gt;</span> high<span class="punctuation">)</span></span><br><span class="line">telco_df<span class="operator">$</span>MonthlyCharges<span class="punctuation">[</span>telco_df<span class="operator">$</span>outlier<span class="punctuation">]</span> <span class="operator">=</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>MonthlyCharges<span class="punctuation">[</span><span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>telco_df<span class="operator">$</span>outlier<span class="punctuation">)</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">high <span class="operator">&lt;-</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>TotalCharges<span class="punctuation">)</span> <span class="operator">+</span> sd<span class="punctuation">(</span>telco_df<span class="operator">$</span>TotalCharges<span class="punctuation">)</span> <span class="operator">*</span> <span class="number">3</span></span><br><span class="line">low <span class="operator">&lt;-</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>TotalCharges<span class="punctuation">)</span> <span class="operator">-</span> sd<span class="punctuation">(</span>telco_df<span class="operator">$</span>TotalCharges<span class="punctuation">)</span> <span class="operator">*</span> <span class="number">3</span></span><br><span class="line">telco_df<span class="operator">$</span>Outlier <span class="operator">&lt;-</span> <span class="punctuation">(</span>telco_df<span class="operator">$</span>TotalCharges <span class="operator">&lt;</span> low <span class="operator">|</span> telco_df<span class="operator">$</span>TotalCharges <span class="operator">&gt;</span> high<span class="punctuation">)</span></span><br><span class="line">telco_df<span class="operator">$</span>TotalCharges<span class="punctuation">[</span>telco_df<span class="operator">$</span>outlier<span class="punctuation">]</span> <span class="operator">=</span> mean<span class="punctuation">(</span>telco_df<span class="operator">$</span>TotalCharges<span class="punctuation">[</span><span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>telco_df<span class="operator">$</span>outlier<span class="punctuation">)</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>Since the other variables except tenure, monthlycharges and totalcharges are Categorical variables, we will replace the outliers of the three non-categorical variables with the average of all the outliers. Then I will use the new cleaning data to build the model.<br><img src="/medias/Telco/Picture26.png" class="img-large" alt=""></p>
+<p>Same step here, first used all the variables to create the model. According to the summary of the model, picked up all the significant variables to built a new model.<br><img src="/medias/Telco/Picture27.png" class="img-large" alt=""></p>
+<p>From the summary of the new model, I can see all variables are significant now, and this is maybe a better model. In the AIC measure, if the score is lower than the other one, it means this model is the preferred model. But it didn’t improve too much if we look at the AIC measure, the model 2’s AIC is a little bigger than model 1’s. However, the parameter in Model 2 is less, which is better than Model 1.<br><img src="/medias/Telco/Picture28.png" class="img-large" alt=""></p>
+<p>By looking at the confusion matrix, the prediction is the row and the actual value is the column.</p>
+<ul>
+<li>Accuracy: By looking at the confusion matrix figure, the accuracy is 0.8053 (80.53%), this is better than the previous model.</li>
+<li>Precision: Precision refers to the positive predictive value. As can be seen from the figure, the pos pred value is 0.6660 (66.6%). This indicates that 66.6% of the customers are predicted to be churned from the telco company.</li>
+<li>Recall: Recall refers to sensitivity. As can be seen from the figure, the sensitivity value is 0.5086 (50.86%).</li>
+<li>Specificity: means the proportion of customer churn correctly identified by the measurement was 91%.</li>
+</ul>
+<img src="/medias/Telco/Picture29.png" class="img-large" alt="">
+
+<p>The closer the curve is to the left and upper boundaries, the more accurate the test will be. In the example of this data set, the curve is in a medium to upper state, indicating that the model is good.</p>
+<h2 id="Stepwise-Selection"><a href="#Stepwise-Selection" class="headerlink" title="Stepwise Selection"></a>Stepwise Selection</h2><h3 id="Forward-selection"><a href="#Forward-selection" class="headerlink" title="Forward selection"></a>Forward selection</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fullModel <span class="operator">=</span> lm<span class="punctuation">(</span>Churn <span class="operator">~</span> .<span class="punctuation">,</span> data <span class="operator">=</span> telco_test<span class="punctuation">)</span> <span class="comment"># model with all variables</span></span><br><span class="line">nullModel <span class="operator">=</span> lm<span class="punctuation">(</span>Churn <span class="operator">~</span> <span class="number">1</span><span class="punctuation">,</span> data <span class="operator">=</span> telco_test<span class="punctuation">)</span> <span class="comment"># model with the intercept only</span></span><br></pre></td></tr></table></figure>
+
+<p>The full model contains all variables in the dataset and the null model only has an intercept.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">summary<span class="punctuation">(</span>stepAIC<span class="punctuation">(</span>nullModel<span class="punctuation">,</span> <span class="comment"># start with a model containing no variables</span></span><br><span class="line">                direction <span class="operator">=</span> <span class="string">&#x27;forward&#x27;</span><span class="punctuation">,</span> <span class="comment"># run forward selection</span></span><br><span class="line">                scope <span class="operator">=</span> <span class="built_in">list</span><span class="punctuation">(</span>upper <span class="operator">=</span> fullModel<span class="punctuation">,</span> <span class="comment"># the maximum to consider is a model with all variables</span></span><br><span class="line">                             lower <span class="operator">=</span> nullModel<span class="punctuation">)</span><span class="punctuation">,</span> <span class="comment"># the minimum to consider is a model with no variables</span></span><br><span class="line">                trace <span class="operator">=</span> <span class="number">0</span><span class="punctuation">)</span><span class="punctuation">)</span> <span class="comment"># do not show the step-by-step process of model selection</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Telco/Picture30-result.png" class="img-large" alt="">
+
+<p>After running the stepwise forward selection, the final model selected by the AIC criterion includes the following predictors: Contract type (one year or two year), Internet service type (fiber optic or not), Total charges, payment method (electronic check), streaming TV, multiple lines, senior citizen, paperless billing, streaming movies, online security, tech support, and tenure.</p>
+<ul>
+<li>The residual standard error is 0.3661, which is a measure of the variability of the residuals.</li>
+<li>The multiple R-squared value of 0.2798 indicates that the model explains 27.98% of the variability in the response variable</li>
+<li>The adjusted R-squared value of 0.2743 indicates that the model accounts for 27.43% of the variability after adjusting for the number of predictors in the model.</li>
+<li>The F-statistic of 50.87 with a p-value of &lt;2.2e-16 indicates that the model as a whole is a good fit to the data.</li>
+</ul>
+<h3 id="Calculating-the-AIC-and-BIC-metrics"><a href="#Calculating-the-AIC-and-BIC-metrics" class="headerlink" title="Calculating the AIC and BIC metrics:"></a>Calculating the AIC and BIC metrics:</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stepAIC <span class="operator">=</span> stepAIC<span class="punctuation">(</span>nullModel<span class="punctuation">,</span> direction <span class="operator">=</span> <span class="string">&#x27;forward&#x27;</span><span class="punctuation">,</span></span><br><span class="line">                  scope <span class="operator">=</span> <span class="built_in">list</span><span class="punctuation">(</span>upper <span class="operator">=</span> fullModel<span class="punctuation">,</span> lower <span class="operator">=</span> nullModel<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                  trace <span class="operator">=</span> <span class="number">0</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>The AIC value of 1768.383 and BIC value of 1870.18.</p>
+<h3 id="Calculating-the-ROC-and-AUC-scores"><a href="#Calculating-the-ROC-and-AUC-scores" class="headerlink" title="Calculating the ROC and AUC scores:"></a>Calculating the ROC and AUC scores:</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">model <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>Churn <span class="operator">~</span> .<span class="punctuation">,</span> data <span class="operator">=</span> telco_test<span class="punctuation">)</span></span><br><span class="line">predictions <span class="operator">&lt;-</span> predict<span class="punctuation">(</span>model<span class="punctuation">,</span> type <span class="operator">=</span> <span class="string">&quot;response&quot;</span><span class="punctuation">)</span></span><br><span class="line">predictions <span class="operator">&lt;-</span> predict<span class="punctuation">(</span>fullModel<span class="punctuation">,</span> type <span class="operator">=</span> <span class="string">&quot;response&quot;</span><span class="punctuation">)</span></span><br><span class="line">roc_object <span class="operator">&lt;-</span> roc<span class="punctuation">(</span>telco_test<span class="operator">$</span>Churn<span class="punctuation">,</span> predictions<span class="punctuation">)</span></span><br><span class="line">auc<span class="punctuation">(</span>roc_object<span class="punctuation">)</span> <span class="comment"># calculate the AUC score</span></span><br><span class="line">plot<span class="punctuation">(</span>roc_object<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Telco/Picture30.png" class="img-large" alt="">
+
+<p>The AUC score of 0.8439 indicates that the model has a good level of accuracy in predicting the binary outcome variable. A score of 0.8439 suggests that the model has a relatively high level of accuracy in predicting the outcome variable.</p>
+<h3 id="Calculating-RMSE"><a href="#Calculating-RMSE" class="headerlink" title="Calculating RMSE:"></a>Calculating RMSE:</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rmse<span class="punctuation">(</span>telco_test<span class="operator">$</span>Churn<span class="punctuation">,</span> predict<span class="punctuation">(</span>stepAIC <span class="punctuation">,</span> telco_test<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">rmse<span class="punctuation">(</span>telco_train<span class="operator">$</span>Churn<span class="punctuation">,</span> predict<span class="punctuation">(</span>stepAIC <span class="punctuation">,</span> telco_train<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="LASSO-REGRESSION"><a href="#LASSO-REGRESSION" class="headerlink" title="LASSO REGRESSION"></a>LASSO REGRESSION</h2><h3 id="Estimating-the-Lambda-Value-using-Cross-Validation-for-Lasso-Regression"><a href="#Estimating-the-Lambda-Value-using-Cross-Validation-for-Lasso-Regression" class="headerlink" title="Estimating the Lambda Value using Cross Validation for Lasso Regression"></a>Estimating the Lambda Value using Cross Validation for Lasso Regression</h3><p>The best value of Lambda is calculated using the cv.glmnet function ,alpha&#x3D;1 and family &#x3D; binomial as the response type for computing the penalized Lasso Regression Model using the Training set of target and predictor variables as shown below :</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Perform k-fold cross-validation to find optimal lambda value for Lasso #</span></span><br><span class="line">set.seed<span class="punctuation">(</span><span class="number">123</span><span class="punctuation">)</span></span><br><span class="line">lasso_cv <span class="operator">&lt;-</span> cv.glmnet<span class="punctuation">(</span>x_train<span class="punctuation">,</span> y_train<span class="punctuation">,</span> family<span class="operator">=</span><span class="string">&quot;binomial&quot;</span><span class="punctuation">,</span> alpha<span class="operator">=</span><span class="number">1</span><span class="punctuation">,</span>nfolds <span class="operator">=</span> <span class="number">10</span><span class="punctuation">)</span></span><br><span class="line">lasso_cv</span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Telco/Picture54.png" class="img-large" alt="">
+
+<p>Observation : The minimum value of Lambda is 0.000342 and the value of Lambda at One Standard error is 0.011727</p>
+<p>Below is the Logarithmic value of Lambda minimum and Lambda at One Standard Error –<br><img src="/medias/Telco/Picture55.png" class="img-large" alt=""></p>
+<p>Now , lets plot Binomial Deviance and Log Lamba value as show below<br><img src="/medias/Telco/Picture31.png" class="img-large" alt=""></p>
+<p>Observation: The above plot displays the cross validation error according to the log of Lambda<br>1.The left-dashed vertical line indicates that the log of optimal value of Lambda which is approx. -8 and is the one which minimizes the prediction error.<br>2.The log of lambda value at one standard error is approx -4.5</p>
+<h3 id="Lasso-Regression-Model-with-Training-Data"><a href="#Lasso-Regression-Model-with-Training-Data" class="headerlink" title="Lasso Regression Model with Training Data:"></a>Lasso Regression Model with Training Data:</h3><p><strong>1.Below is the Lasso regression model using the glmnet function on the training data using the Minimum Lambda Value :</strong><br><img src="/medias/Telco/Picture57.png" class="img-large" alt=""></p>
+<p>Lets , have a look at the coefficients for the above Lasso Regression Model using the Lamba Min<br><img src="/medias/Telco/Picture32.png" class="img-large" alt=""></p>
+<p>Observation: From the above plot coefficients of the Lasso Regression Model, we can understand the below:</p>
+<ol>
+<li><p>Features with very less coefficient values have been penalized or shrunk to 0 by the Lasso Regression Model. The more they are penalized or shrunk, the less significant these features are to the model.</p>
+</li>
+<li><p>Below are the coefficients which we can understand have been shrunken to 0</p>
+</li>
+</ol>
+<ul>
+<li>MultipleLines-No phone service</li>
+<li>OnlineSecurity-No internet service</li>
+<li>MonthlyCharges</li>
+</ul>
+<p><strong>2.Below is the Lasso regression model using the glmnet function on the training data using the Lamba Value at 1se :</strong><br><img src="/medias/Telco/Picture58.png" class="img-large" alt=""></p>
+<p>Lets , have a look at the coefficients for the above Lasso Regression Model using the Lamba 1se<br><img src="/medias/Telco/Picture33.png" class="img-large" alt=""></p>
+<p>Observation: From the above plot coefficients of the Lasso Regression Model using Lambda 1se, we can understand the below:</p>
+<ol>
+<li>Features with very less coefficient values have been penalized or shrunk to 0 by the Lasso Regression Model. The more they are penalized or shrunk, the less significant these features are to the model.</li>
+<li>Below are the coefficients which we have been shrunken to 0 which are more as compared to the Model using the Lambda Min</li>
+</ol>
+<ul>
+<li>Gender - Male</li>
+<li>Partner</li>
+<li>Phone Service</li>
+<li>MultipleLines-No phone service</li>
+<li>OnlineSecurity-No internet service</li>
+<li>DeviceProtection -Yes</li>
+<li>TechSupport-No internet service</li>
+<li>StreamingMovies- No internet service</li>
+<li>PaymentMethod- Credit card (automatic)</li>
+<li>PaymentMethod-Mailed check</li>
+<li>MonthlyCharges</li>
+</ul>
+<h3 id="Prediction-on-the-Training-Dataset-and-Determining-Performance-of-the-model"><a href="#Prediction-on-the-Training-Dataset-and-Determining-Performance-of-the-model" class="headerlink" title="Prediction on the Training Dataset and Determining Performance of the model :"></a>Prediction on the Training Dataset and Determining Performance of the model :</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Lasso regression model for making predictions on Train data#</span></span><br><span class="line">predict_lasso_train <span class="operator">&lt;-</span> predict<span class="punctuation">(</span>lasso_model_train_min<span class="punctuation">,</span> newx <span class="operator">=</span> x_train<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>Root Mean Squared Error :</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#RMSE for Lasso regression model against the Training set#</span></span><br><span class="line">lasso_train_rmse <span class="operator">&lt;-</span> rmse<span class="punctuation">(</span>y_train<span class="punctuation">,</span> predict_lasso_train<span class="punctuation">)</span></span><br><span class="line">lasso_train_rmse</span><br></pre></td></tr></table></figure>
+
+<p>The RMSE is 0.3768874.</p>
+<p>Observation:</p>
+<ol>
+<li>We first use the predict function on the Lasso Model we created using Lambda Min value to generate prediction on the training data.</li>
+<li>Further , the performance of the Lasso Regression Model against the training dataset is determined by calculating the Root Mean Squared error (RMSE) using the rmse function on the predicted model.</li>
+<li>Finally , we get the RMSE value on the training data which is 0.37</li>
+<li>This shows that the RMSE value is good enough for the prediction as the data points in the training data are not scattered much.</li>
+</ol>
+<h3 id="Prediction-on-the-Testing-Dataset-and-Determining-Performance-of-the-model"><a href="#Prediction-on-the-Testing-Dataset-and-Determining-Performance-of-the-model" class="headerlink" title="Prediction on the Testing Dataset and Determining Performance of the model :"></a>Prediction on the Testing Dataset and Determining Performance of the model :</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Lasso regression model for making predictions on Test data#</span></span><br><span class="line">predict_lasso_test <span class="operator">&lt;-</span> predict<span class="punctuation">(</span>lasso_model_train_min<span class="punctuation">,</span> newx <span class="operator">=</span> x_test<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>Root Mean Squared Error :</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#RMSE for Lasso regression model against the Test set#</span></span><br><span class="line">lasso_test_rmse <span class="operator">&lt;-</span> rmse<span class="punctuation">(</span>y_test<span class="punctuation">,</span> predict_lasso_test<span class="punctuation">)</span></span><br><span class="line">lasso_test_rmse</span><br></pre></td></tr></table></figure>
+
+<p>The RMSE is 0.3768874.</p>
+<p>Observation:</p>
+<ol>
+<li>We first use the predict function on the Lasso Model we created using Lambda Min value to generate prediction on the training data.</li>
+<li>Further , the performance of the Lasso Regression Model against the training dataset is determined by calculating the Root Mean Squared error (RMSE) using the rmse function on the predicted model.</li>
+<li>Finally , we get the RMSE value on the training data which is 0.36</li>
+<li>This shows that the RMSE value is good enough for the prediction as the data points in the training data are not scattered much.</li>
+</ol>
+<h3 id="Is-the-Model-Over-fitting"><a href="#Is-the-Model-Over-fitting" class="headerlink" title="Is the Model Over-fitting ?"></a>Is the Model Over-fitting ?</h3><p>As we saw that the RMSE values for both the Training and Test data set are almost close, hence we can conclude that the Ridge Regression Model is not over-fitting.</p>
+<p>Lasso Model Metrics</p>
+<p>1.AIC $ BIC Score</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#AIC SCORE#</span></span><br><span class="line">AIC.glmnet <span class="operator">&lt;-</span> <span class="keyword">function</span><span class="punctuation">(</span>glm_fit<span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">  chisqLR <span class="operator">&lt;-</span> glm_fit<span class="operator">$</span>nulldev <span class="operator">-</span> deviance<span class="punctuation">(</span>glm_fit<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">  chisqLR <span class="operator">-</span> <span class="number">2</span><span class="operator">*</span>glm_fit<span class="operator">$</span>df</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">AIC.glmnet<span class="punctuation">(</span>lasso_model_train_min<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>The AIC score is 227.3354.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#BIC SCORE#</span></span><br><span class="line">glmnet_cv_bic<span class="punctuation">(</span>lasso_cv<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>The BIC score is -1397.502.</p>
+<p>2.The R-squared and Root Mean Square Error values (RMSE) for both Training &amp; Test dataset is summarized as follows :<br><img src="/medias/Telco/Picture59.png" class="img-large" alt=""></p>
+<p>Observation :</p>
+<ol>
+<li>R-square value for Train : 0.28</li>
+<li>RMSE value for Train : 0.37</li>
+<li>R-square value for Test : 0.27</li>
+<li>RMSE value for Test : 0.36</li>
+</ol>
+<p>ROC Curve (Receiver Operating Characteristics) and AUC<br><img src="/medias/Telco/Picture34.png" class="img-large" alt=""></p>
+<p>Observation :<br>We can observe that the ROC curve is moderately closer or hugging the y-axis and is showing a curve and is not flat at the top which indicates that the Model has shown moderate performance results.</p>
+<h2 id="Ridge-Regression"><a href="#Ridge-Regression" class="headerlink" title="Ridge Regression"></a>Ridge Regression</h2><p>In order to find the lambda value which produces the lowest test MSE, k-fold cross validation should be performed.</p>
+<p>If a model is trained and tested using only one dataset, the test MSE can vary greatly depending on which observations were used in the training and testing datasets.</p>
+<p>In order to avoid this problem, a model can be fit several times using different training and testing datasets each time and the overall test MSE can be calculated as the average of all of the test MSEs.</p>
+<p>This method is known as cross validation and k-folds cross validation can be performed in R using cv.glmnet() function. It performs k-folds cross validation using k &#x3D; 10 folds.</p>
+<p>Alpha value of 0 should be set for Ridge regression models.<br><img src="/medias/Telco/Picture60.png" class="img-large" alt=""></p>
+<p>Lambda.min has a value of 0.015 and Lambda.1se has a value of 0.09.</p>
+<p>Lambda.min gives the result with minimum mean cross-validation error. It is the lambda value at which the smallest MSE and maximum accuracy can be achieved. This lambda value will give the most accurate model.</p>
+<p>Lambda.1se gives the result such that the cross-validation error is within 1 standard error of the minimum. This lambda value gives the simplest model and also lies within 1 standard error of the optimal value of lambda.<br><img src="/medias/Telco/Picture61.png" class="img-large" alt=""></p>
+<p>The left dashed vertical line gives the log of the optimal lambda value (Lambda.min) which produces the least prediction error , its value is approximately equal to -4.15.<br>The right dashed vertical line gives the log of the lambda value (Lambda.1se) which can produce the simplest model. Its value is approximately equal to -2.38.</p>
+<h3 id="Fitting-the-Ridge-regression-model"><a href="#Fitting-the-Ridge-regression-model" class="headerlink" title="Fitting the Ridge regression model:"></a>Fitting the Ridge regression model:</h3><img src="/medias/Telco/Picture62.png" class="img-large" alt="">
+
+<p>Fitting the Ridge regression model using the best lambda value which can produce the least prediction error - Lambda.min - glmnet() function is used against the training dataset and the coefficients of the predictor variables are displayed.<br>All the significant variables are incorporated in the model. Thus the maximum possible accuracy of the model is achieved and the prediction error is reduced by imposing a penalty to the model for having too many variables.</p>
+<p>Making predictions for the training dataset:<br><img src="/medias/Telco/Picture63.png" class="img-large" alt=""></p>
+<p>The Root mean square error value is calculated using the rmse() function of the Metrics package. The value of RMSE for this model is 0.37.<br>The R square value is calculated using the formula 1 - (sse&#x2F;sst) and the value is 0.27.<br>Generally, the smaller the RMSE , the better is the model performance. The R square value for this model is quite less , with a value of 0.27 which means that 27 percent of the variance in the results is explained by the predictor variables. This model accuracy is very low and not reliable.</p>
+<p>Making predictions for the testing dataset:<br><img src="/medias/Telco/Picture64.png" class="img-large" alt=""></p>
+<p>The Root mean square error value is calculated using the rmse() function of the Metrics package and the value with the testing dataset is calculated as 0.37.<br>The R square value is calculated using the formula 1 - (sse&#x2F;sst) and the value with the testing dataset is 0.29.<br>We can determine if a model is overfit by calculating the difference between RMSE of the training and testing datasets.<br>&#x3D; 0.37 - 0.37 &#x3D; 0<br>If this difference in RMSE between the training and testing datasets is close to 0, the model is not overfit. The difference of RMSE is 0 and also the R square value is almost equal in both training dataset and testing dataset, which means that there is no problem of overfitting observed with this model.</p>
+<p>Calculating the AIC and BIC metrics:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AIC.glmnet <span class="operator">&lt;-</span> <span class="keyword">function</span><span class="punctuation">(</span>glm_fit<span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">  chisqLR <span class="operator">&lt;-</span> glm_fit<span class="operator">$</span>nulldev <span class="operator">-</span> deviance<span class="punctuation">(</span>glm_fit<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">  chisqLR <span class="operator">-</span> <span class="number">2</span><span class="operator">*</span>glm_fit<span class="operator">$</span>df</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">AIC.glmnet<span class="punctuation">(</span>model.min.ridge.train<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>The AIC is 205.0926.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">glmnet_cv_aicc <span class="operator">&lt;-</span> <span class="keyword">function</span><span class="punctuation">(</span>fit<span class="punctuation">,</span> lambda <span class="operator">=</span> <span class="string">&#x27;lambda.min&#x27;</span><span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  whlm <span class="operator">&lt;-</span> which<span class="punctuation">(</span>fit<span class="operator">$</span>lambda <span class="operator">==</span> fit<span class="punctuation">[[</span>lambda<span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br><span class="line">  with<span class="punctuation">(</span>fit<span class="operator">$</span>glmnet.fit<span class="punctuation">,</span></span><br><span class="line">       <span class="punctuation">&#123;</span></span><br><span class="line">         tLL <span class="operator">&lt;-</span> nulldev <span class="operator">-</span> nulldev <span class="operator">*</span> <span class="punctuation">(</span><span class="number">1</span> <span class="operator">-</span> dev.ratio<span class="punctuation">)</span><span class="punctuation">[</span>whlm<span class="punctuation">]</span></span><br><span class="line">         k <span class="operator">&lt;-</span> df<span class="punctuation">[</span>whlm<span class="punctuation">]</span></span><br><span class="line">         n <span class="operator">&lt;-</span> nobs</span><br><span class="line">         <span class="built_in">return</span><span class="punctuation">(</span><span class="built_in">list</span><span class="punctuation">(</span><span class="string">&#x27;BIC&#x27;</span> <span class="operator">=</span> <span class="built_in">log</span><span class="punctuation">(</span>n<span class="punctuation">)</span> <span class="operator">*</span> k <span class="operator">-</span> tLL<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">       <span class="punctuation">&#125;</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#AIC and BIC scores for Ridge regression</span></span><br><span class="line">glmnet_cv_aicc<span class="punctuation">(</span>cv_model_ridge_train<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>The BIC is -1185.51.</p>
+<p>Calculating the ROC and AUC scores:<br><img src="/medias/Telco/Picture65.png" class="img-large" alt=""></p>
+<p>The ROC curve is approaching the central diagonal line which indicates that the model performance is moderate. The area under the curve value is 0.84. The higher the AUC, the model has good discriminatory ability and it will correctly predict the true positives and negatives for 84% of the time.</p>
+<p>Important metrics for the model:</p>
+<p>AIC : 205.09<br>BIC : -1185.51<br>RMSE (Training RMSE - Testing RMSE) : 0<br>R Square Test : 0.27<br>R Square Train : 0.27<br>AUC : 0.84</p>
+<h1 id="COMPARISON-OF-THE-MODELS"><a href="#COMPARISON-OF-THE-MODELS" class="headerlink" title="COMPARISON OF THE MODELS"></a>COMPARISON OF THE MODELS</h1><table>
+<thead>
+<tr>
+<th><strong>METRICS</strong></th>
+<th><strong>LOGISTIC MODEL - GLM</strong></th>
+<th><strong>STEPWISE - Forward</strong></th>
+<th><strong>LASSO</strong></th>
+<th><strong>RIDGE</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AIC</strong></td>
+<td><strong>4198.7</strong></td>
+<td><strong>1768.383</strong></td>
+<td><strong>227.33</strong></td>
+<td><strong>205.09</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>BIC</strong></td>
+<td><strong>4257</strong></td>
+<td><strong>1870.18</strong></td>
+<td><strong>-1397.50</strong></td>
+<td><strong>-1185.51</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>RMSE (Difference of Training &amp; Test)</strong></td>
+<td><strong>0.022</strong></td>
+<td><strong>0.01</strong></td>
+<td><strong>0.01</strong></td>
+<td><strong>0.01</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>AUC</strong></td>
+<td><strong>0.8351</strong></td>
+<td><strong>0.8439</strong></td>
+<td><strong>0.844</strong></td>
+<td><strong>0.84</strong></td>
+</tr>
+<tr>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>Observations:<br>The model built using the Logistic regression algorithm with Glm() function in R did a good job in predicting the customer churn with a RMSE difference value between training and testing datasets of 0.02. This means that the difference between the actual and the predicted values is very less and it performed well in both the training and testing datasets. The AUC score of this model is 0.83, indicating that this model can correctly classify the samples for 83% of the time.</p>
+<p>AIC and BIC scores provide measures of the model performance that account for model complexity. These values are quite large and hence this model is quite complex though it can be accurate with the predictions.</p>
+<p>In order to achieve a simpler model, we used the Stepwise selection method, Ridge and Lasso algorithms.</p>
+<p>Used Stepwise selection algorithm (forward) to select the best set of predictor variables : Contract type (one year or two year), Internet service type (fiber optic or not), Total charges, payment method (electronic check), streaming TV, multiple lines, senior citizen, paperless billing, streaming movies. A comparatively lower AIC and BIC scores were achieved.</p>
+<p>Ridge and Lasso regularization algorithms were used to build models to check if the complexity of the model can be reduced further. Both Lasso and Ridge models had a very low RMSE in both training and testing datasets and were able to predict the results accurately for 84% of the time.</p>
+<p>All the above models achieved almost the same level of accuracy.</p>
+<p>In general, BIC is more conservative than AIC and tends to select simpler models, while AIC is more flexible and may select models with a higher complexity.</p>
+<p>As we are trying to reduce the complexity of the model, we can select the Lasso regression model as the best model as it has the lowest BIC value.</p>
+<h1 id="CONCLUSION"><a href="#CONCLUSION" class="headerlink" title="CONCLUSION"></a>CONCLUSION</h1><p>In this project , a dataset related to a Telecom company’s customers was analyzed to study the various factors contributing towards Customer Churn. Data cleaning and Exploratory Data analysis were done on the dataset and some of the interesting insights were presented in the form of graphs and charts. The Telco Customer Churn dataset provides valuable information about the behavior of customers towards the company’s products and services. By analyzing this dataset, we can understand the factors that influence customer churn, such as the services they subscribe to, demographic information, account information, and contract type. Additionally, we can use the insights gained from the analysis to develop targeted customer retention programs and minimize the customer churn rate. The dataset has 7043 records and 21 columns, including both numerical and categorical data. Through the analysis, the company aims to answer questions related to the predictors of customer churn and how different variables influence the decision of customers to leave the company.</p>
+<p>Chi-square and One-way Anova methods were used to validate a few claims and the results and conclusions were documented. The best set of predictor variables used to predict the customer churn were identified using Best subsets regression method.</p>
+<h3 id="Following-are-some-conclusions-analyzed-using-the-Chi-square-and-ANOVA-methods"><a href="#Following-are-some-conclusions-analyzed-using-the-Chi-square-and-ANOVA-methods" class="headerlink" title="Following are some conclusions analyzed using the Chi-square and ANOVA methods -"></a>Following are some conclusions analyzed using the Chi-square and ANOVA methods -</h3><ul>
+<li>There is not sufficient evidence suggesting that there is a relationship between PhoneService and churn.</li>
+<li>There is not sufficient evidence that supports there is a relationship between gender and churn.</li>
+<li>There is sufficient evidence that supports there is a relationship between partner and churn.</li>
+<li>There is a difference in the duration of tenure. The duration of tenure is less than the mean that the customer churn is 38%, and the duration of tenure is more than the mean that the customer churn is 18.1%. So Customers with less tenure are more likely to be Churned.</li>
+<li>The average total charge is different for all types of internet service.</li>
+<li>The average total charge is different for all types of contract.</li>
+<li>The average total charge is different for all types of Payment Methods.</li>
+<li>Demographic information of SeniorCitizen, Dependents, and Partners will affect customers’ churn rate. Gender has no relationship with churn.</li>
+</ul>
+<p>In order to predict the customer Churn, we have built 4 models using Logistic regression with Glm function, Stepwise Selection method (Forward), Ridge and Lasso Regularization algorithms.<br>In order to select the best model, various model comparison metrics like AIC (Akaike information criterion) , BIC (Bayesian information criterion) , RMSE (Root Mean Square Error) , AUC (Area Under Curve) of ROC curve were compared.</p>
+<p>All the four models achieved almost the same level of accuracy of 0.84, able to correctly make the predictions for 84% of the time and exhibited good discriminatory ability. In general, BIC is more conservative than AIC and tends to select simpler models and hence Lasso regression model was selected as the best model as it had the lowest BIC score.</p>
+<h3 id="Key-Insights"><a href="#Key-Insights" class="headerlink" title="Key Insights:"></a>Key Insights:</h3><ul>
+<li>The percentage of senior citizens churned is greater than the percentage of young&#x2F;middle aged people.</li>
+<li>The customers having a longer tenure period tend to stay loyal with the company.</li>
+<li>The customers with a contract type of Month-to-month are more likely to churn.</li>
+<li>The customers having a Two-year contract type are less likely to churn.</li>
+<li>The customers opting for an internet service type of Fiber optic, are more likely to churn than with other internet services.</li>
+<li>Customers with partners and dependents have a lower churn rate than those who don’t have partners and dependents.</li>
+<li>Customers opting for Electronic Check payment method are more likely to churn than the customers using other options.</li>
+</ul>
+<h4 id="Author"><a href="#Author" class="headerlink" title="Author:"></a>Author:</h4><ul>
+<li>Xiaoge Zhang</li>
+<li>Yuchen Zhao</li>
+<li>Bhagyashri R.Kadam</li>
+<li>Shyamala Venkatakrishnan</li>
+</ul>
+<style>
+p {
+    text-indent: 2em;
+}
+</style>
+
+<style>
+.img-large {
+    width: 700px;
+    height:400;
+    display: block;
+    margin: 0 auto;
+}
+}
+</style>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Xiaoge Zhang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.xiaogezhang.org/2023/02/18/Project-Telco/">http://www.xiaogezhang.org/2023/02/18/Project-Telco/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Xiaoge Zhang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Project/">
+                                    <span class="chip bg-color">Project</span>
+                                </a>
+                            
+                                <a href="/tags/Data-Anlysis/">
+                                    <span class="chip bg-color">Data Anlysis</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2023/02/18/Project-Telco/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Project:Telco Customer Churn">
+                        
+                        <span class="card-title">Project:Telco Customer Churn</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Xiaoge Zhang
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Project/">
+                        <span class="chip bg-color">Project</span>
+                    </a>
+                    
+                    <a href="/tags/Data-Anlysis/">
+                        <span class="chip bg-color">Data Anlysis</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/02/06/Award-2023%20Hackathon/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Award:Winner of 2023 Husky Hackathon">
+                        
+                        <span class="card-title">Award:Winner of 2023 Husky Hackathon</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Xiaoge Zhang
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Award/">
+                        <span class="chip bg-color">Award</span>
+                    </a>
+                    
+                    <a href="/tags/Project/">
+                        <span class="chip bg-color">Project</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+   <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+ 
+
+  <div
+    class="container row center-align"
+    style="margin-bottom: 0px !important;"
+  >
+    <div class="col s12 m8 l8 copy-right">
+      Copyright&nbsp;&copy; 
+      <span id="year"
+        >2019-2023</span
+      >
+      
+      <a href="/about" target="_blank"
+        >Xiaoge Zhang</a
+      >
+      |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+      |&nbsp;Theme&nbsp;<a href="https://xiaogezhan.github.io/" target="_blank"
+        >Matery</a
+      >
+      
+      <br />
+         
+       
+      <span id="busuanzi_container_site_pv">
+        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+        <span id="busuanzi_value_site_pv" class="white-color"></span>
+      </span>
+       
+      <span id="busuanzi_container_site_uv">
+        &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+        <span id="busuanzi_value_site_uv" class="white-color"></span>
+      </span>
+      
+      <br />
+
+      <!-- 运行天数提醒. -->
+      
+      <br />
+      
+    </div>
+    <div class="col s12 m4 l4 social-link social-statis">
+      
+<a
+  href="https://github.com/xiaogeZhan"
+  class="tooltipped"
+  target="_blank"
+  data-tooltip="Visit My GitHub"
+  data-position="top"
+  data-delay="50"
+>
+  <i class="fab fa-github"></i>
+</a>
+ 
+<a
+  href="mailto:zhang.xiaoge@northeastern.edu"
+  class="tooltipped"
+  target="_blank"
+  data-tooltip="Email Me"
+  data-position="top"
+  data-delay="50"
+>
+  <i class="fas fa-envelope-open"></i>
+   
+  <a
+    href="https://www.linkedin.com/in/xiaoge-zhang-944b75162/"
+    class="tooltipped"
+    target="_blank"
+    data-tooltip="Connect With My Linkedin"
+    data-position="top"
+    data-delay="50"
+  >
+    <i class="fab fa-linkedin"></i>
+  </a>
+       
+</a>
+
+    </div>
+  </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
