@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Project:Hands-On Apache Airflow, Xiaoge Zhang">
-    <meta name="description" content="Handson Airflow
-Install Apache Airflow with Docker
-Open terminal or CMD and go into Documents&amp;#x2F;materialscd ~/Documen">
+    <meta name="description" content="Hands-On Airflow
+
+IntroductionWelcome to our journey exploring the world of data pipeline management using Apache Airflo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -406,23 +406,123 @@ Open terminal or CMD and go into Documents&amp;#x2F;materialscd ~/Documen">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>Handson Airflow</strong></p>
-<p>Install Apache Airflow with Docker</p>
-<p>Open terminal or CMD and go into Documents&#x2F;materials<br><code>cd ~/Documents/</code><br><code>cd Documents/materials</code></p>
-<p>Key Takeaways</p>
-<ul>
-<li><p>Airflow is an orchestrator, not a processing framework. Process your gigabytes of data outside of Airflow (i.e. You have a Spark cluster, you use an operator to execute a Spark job, and the data is processed in Spark).</p>
-</li>
-<li><p>A DAG is a data pipeline, an Operator is a task.</p>
-</li>
-<li><p>An Executor defines how your tasks are executed, whereas a worker is a process executing your task</p>
-</li>
-<li><p>The Scheduler schedules your tasks, the web server serves the UI, and the database stores the metadata of Airflow.</p>
-</li>
+                <h1 id="Hands-On-Airflow"><a href="#Hands-On-Airflow" class="headerlink" title="Hands-On Airflow"></a>Hands-On Airflow</h1><img src="/medias/Airflow/Picture1.png" class="img-large" alt="">
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Welcome to our journey exploring the world of data pipeline management using Apache Airflow and Docker. In this blog post, we’re going to delve into an exciting project that aimed to understand the intricacies of workflow management and create a comprehensive platform for handling complex tasks.</p>
+<p>For those who may not be familiar, Apache Airflow is an open-source tool used to programmatically author, schedule, and monitor workflows. It’s a highly versatile tool that enables you to create complex data processing workflows, making it a popular choice among data engineers worldwide. By using Directed Acyclic Graphs (DAGs), Airflow allows us to manage thousands of tasks with dependencies, thus enabling us to construct intricate data pipelines.</p>
+<p>On the other hand, Docker, a highly acclaimed application deployment platform, provides us with the power of containerization. By packaging our applications and their dependencies into a portable container, we can ensure our applications will run smoothly across different computing environments. Docker containers are efficient, lightweight, and above all, easy to manage, making it a fantastic tool to combine with Apache Airflow.</p>
+<p>Our exploration in this blog post will primarily revolve around how we combined these two powerful tools to develop an effective system for scheduling, monitoring, and handling task failures. By the end of this post, you will have gained valuable insights into the world of Apache Airflow, Docker, and how they can be leveraged to build powerful, scalable data pipelines. So, buckle up and join us on this exhilarating ride through the world of data engineering!</p>
+<h2 id="Project-Overview"><a href="#Project-Overview" class="headerlink" title="Project Overview"></a>Project Overview</h2><p>Navigating the complex landscape of data engineering and workflow management can often be daunting. Therefore, the primary objective of my project was to comprehend and streamline these complexities. I aimed to create a platform capable of handling complex tasks using the powerful tools Apache Airflow and Docker.</p>
+<p><strong>Purpose of the Project</strong></p>
+<p>The project was rooted in my quest to decipher the intricate world of workflow management and data orchestration using Apache Airflow. My focus was on developing Directed Acyclic Graphs (DAGs), which are pivotal in the operation of Airflow workflows. I built a system that could efficiently schedule, monitor, and handle task failures, thereby ensuring the smooth functioning of the data pipeline even in the face of challenging tasks.</p>
+<p><strong>Technologies Used</strong></p>
+<p>I built the platform using Apache Airflow and Docker, two versatile and highly potent technologies. Apache Airflow helped me design intricate workflows interacting with a range of Big Data components such as Hive, PostgreSQL, and Elasticsearch. Docker played a vital role in deploying the application and managing Airflow, along with various executors, efficiently. The combination of these technologies culminated in a robust, flexible platform capable of handling large volumes of data and complex workflows.</p>
+<p><strong>Challenges and Solutions</strong></p>
+<p>The journey was not without its share of obstacles. One of the significant challenges was integrating various Airflow components and handling specific limitations associated with datasets. It was a daunting task to ensure that DAGs operated within the same Airflow instance and manage scenarios when multiple tasks attempted to update the same dataset at once. Furthermore, understanding Executors, which use hooks to connect to different providers, proved to be a complex issue.</p>
+<p>To surmount these hurdles, I immersed myself in the functionalities and features of each component of Apache Airflow and Docker. I closely studied various DAGs, tasks, and workflows, and examined how each operator functioned within the system. It was through this rigorous process of learning and iterative development that I managed to overcome these challenges.</p>
+<h2 id="Deep-Dive-into-Apache-Airflow"><a href="#Deep-Dive-into-Apache-Airflow" class="headerlink" title="Deep Dive into Apache Airflow"></a>Deep Dive into Apache Airflow</h2><p>In this section, I will delve into the nitty-gritty of Apache Airflow, a platform that has revolutionized the domain of data management and workflow orchestration. By dissecting the key concepts of Airflow and illustrating its role in Big Data, I aim to shed light on the potential it holds for contemporary data pipelines.</p>
+<p><strong>Introduction to Airflow</strong></p>
+<p>Apache Airflow is an open-source platform to programmatically author, schedule, and monitor workflows. Developed by Airbnb and later contributed to Apache Software Foundation, Airflow has been designed to organize tasks and their dependencies in a flexible, scalable manner. The platform is written in Python, which means that you can define workflows using Python scripts, and it integrates seamlessly with other Python-based applications.</p>
+<p><strong>Key Concepts in Apache Airflow</strong></p>
+<p>Understanding Apache Airflow necessitates an understanding of its core components: Directed Acyclic Graphs (DAGs), Operators, Tasks, Executors, and Scheduler.</p>
+<p>Directed Acyclic Graphs (DAGs): DAGs are a set of all the tasks you want to run, organized in a way that reflects their relationships and dependencies. As the name implies, DAGs can’t have circular dependencies.</p>
+<p>Operators: While DAGs describe how to run a workflow, operators determine what actually gets done. An operator describes a single task in a workflow, and Airflow offers several types - BashOperator for shell commands, PythonOperator for Python functions, and so on.</p>
+<p>Tasks: A task is a parameterized instance of an operator. When an operator is instantiated with arguments, it becomes a task.</p>
+<p>Executors: Executors are the mechanism by which task instances get run. They have different flavors like SequentialExecutor, LocalExecutor, CeleryExecutor, and KubernetesExecutor, each with its unique method of running tasks.</p>
+<p>Scheduler: The scheduler is the core component that uses DAG definitions in conjunction with the state of the tasks in the metadata database to decide which tasks need to be executed, as well as their execution order.</p>
+<p><strong>Apache Airflow and Big Data Components</strong></p>
+<p>Apache Airflow has proven to be an instrumental tool in the realm of Big Data. It interacts with several Big Data components, including Hive, PostgreSQL, and Elasticsearch.</p>
+<p>Hive: Apache Hive is a data warehousing project built on top of Apache Hadoop for providing data query and analysis. Hive’s integration with Airflow allows us to run Hive queries through the HiveOperator.</p>
+<p>PostgreSQL: PostgreSQL is a robust relational database. Airflow provides the PostgresOperator, enabling users to execute PostgreSQL commands.</p>
+<p>Elasticsearch: Elasticsearch is a search and analytics engine. Although Airflow does not provide a dedicated operator for Elasticsearch, Python hooks can be used to interact with Elasticsearch within a PythonOperator task.</p>
+<h2 id="Docker-The-Perfect-Partner-for-Apache-Airflow"><a href="#Docker-The-Perfect-Partner-for-Apache-Airflow" class="headerlink" title="Docker: The Perfect Partner for Apache Airflow"></a>Docker: The Perfect Partner for Apache Airflow</h2><p>As we continue to explore the ecosystem of data management tools, we inevitably arrive at Docker. Docker and Apache Airflow form a synergistic partnership, allowing for powerful and flexible data pipeline management. This section will provide an introduction to Docker, its functions, and use cases, as well as demonstrate its integral role in managing Apache Airflow and different executors.</p>
+<p><strong>Introduction to Docker</strong></p>
+<p>Docker is an open-source platform that utilizes operating system-level virtualization to develop and deliver software in packages known as containers. These containers are isolated from each other and bundle their own software, libraries, and system tools, ensuring that the software runs quickly and consistently from one computing environment to another.</p>
+<p>The benefits of Docker lie in its capability to standardize environments and remove the classic “it works on my machine” problem, thereby simplifying the development process and enhancing deployment speed and scalability.</p>
+<p><strong>Docker and Apache Airflow</strong></p>
+<p>Docker’s containerization capability proves to be remarkably useful when managing Apache Airflow. By using Docker, we can easily distribute and replicate Airflow’s setup, reducing discrepancies between different environments and increasing efficiency.</p>
+<p>Setting up an Airflow environment using Docker involves creating a Dockerfile to build a Docker image and using Docker Compose to define and run the multi-container Docker applications. This image can then be used to create Docker containers with a predefined environment for Airflow to run in.</p>
+<p>For different Airflow components like the webserver, scheduler, and workers, separate containers can be spun up, ensuring that they work independently but can communicate with each other. It simplifies the management of dependencies and system libraries, as each container encapsulates everything needed to run a piece of software.</p>
+<p><strong>Docker and Executors</strong></p>
+<p>When it comes to executor support, Docker’s role becomes even more vital. For instance, the KubernetesExecutor or the CeleryExecutor in Airflow allows running tasks in either individual Kubernetes Pods or distributed Celery workers. Docker helps in these scenarios by providing an environment to pack these tasks with their dependencies.</p>
+<p>In conclusion, Docker provides an ideal environment for managing and scaling Apache Airflow. Its ease of use, coupled with its ability to contain software in discrete, replicable environments, makes Docker an essential tool for anyone using Airflow for managing complex workflows. As we move forward, I will share how I used Docker in conjunction with Apache Airflow to enhance my data pipeline’s management and overcome the project’s challenges.</p>
+<h2 id="Building-a-Data-Pipeline-Using-Apache-Airflow-and-Docker"><a href="#Building-a-Data-Pipeline-Using-Apache-Airflow-and-Docker" class="headerlink" title="Building a Data Pipeline Using Apache Airflow and Docker"></a>Building a Data Pipeline Using Apache Airflow and Docker</h2><p>In this section, I will guide you step by step on how to construct a robust data pipeline using Apache Airflow and Docker. We’ll cover everything from defining the pipeline, executing SQL and HTTP requests, invoking Python functions, to handling task interdependencies, and even dealing with dataset limitations.</p>
+<p>Step 1: Defining a Data Pipeline</p>
+<p>Defining a data pipeline in Apache Airflow begins with the creation of a Directed Acyclic Graph (DAG). A DAG is a collection of all the tasks you want to run, organized in a way that reflects their relationships and dependencies.</p>
+<p>Here’s a simple example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow <span class="keyword">import</span> DAG</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">dag = DAG(</span><br><span class="line">    <span class="string">&#x27;my_dag&#x27;</span>,</span><br><span class="line">    start_date=datetime(<span class="number">2023</span>, <span class="number">7</span>, <span class="number">20</span>),</span><br><span class="line">    description=<span class="string">&#x27;A simple tutorial DAG&#x27;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Step 2: Executing SQL Requests with PostgresOperator</p>
+<p>Airflow provides various operators for different tasks. For SQL requests, we use the PostgresOperator. After setting up the necessary PostgreSQL connection, we can execute a SQL command as follows:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow.providers.postgres.operators.postgres <span class="keyword">import</span> PostgresOperator</span><br><span class="line"></span><br><span class="line">sql_task = PostgresOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;my_sql_task&#x27;</span>,</span><br><span class="line">    postgres_conn_id=<span class="string">&#x27;my_postgres_connection&#x27;</span>,</span><br><span class="line">    sql=<span class="string">&#x27;SELECT * FROM my_table&#x27;</span>,</span><br><span class="line">    dag=dag,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Step 3: Executing HTTP Requests</p>
+<p>To execute HTTP requests against an API, we use the SimpleHttpOperator.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow.providers.http.operators.http <span class="keyword">import</span> SimpleHttpOperator</span><br><span class="line"></span><br><span class="line">http_task = SimpleHttpOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;my_http_task&#x27;</span>,</span><br><span class="line">    method=<span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">    endpoint=<span class="string">&#x27;my_api_endpoint&#x27;</span>,</span><br><span class="line">    dag=dag,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Step 4: Executing Python Functions with PythonOperator</p>
+<p>The PythonOperator allows us to run Python functions as tasks.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow.operators.python_operator <span class="keyword">import</span> PythonOperator</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">my_python_function</span>():</span><br><span class="line">    <span class="comment"># Python function logic here</span></span><br><span class="line"></span><br><span class="line">python_task = PythonOperator(</span><br><span class="line">    task_id=<span class="string">&#x27;my_python_task&#x27;</span>,</span><br><span class="line">    python_callable=my_python_function,</span><br><span class="line">    dag=dag,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Step 5: Waiting for Tasks to Finish with Sensors</p>
+<p>Sensors are a special kind of operator that will keep running until a certain condition is met.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> airflow.sensors.base <span class="keyword">import</span> BaseSensorOperator</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MySensor</span>(<span class="title class_ inherited__">BaseSensorOperator</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">poke</span>(<span class="params">self, context</span>):</span><br><span class="line">        <span class="comment"># return True when the condition is met</span></span><br><span class="line">        <span class="keyword">return</span> condition_is_met</span><br><span class="line"></span><br><span class="line">sensor_task = MySensor(</span><br><span class="line">    task_id=<span class="string">&#x27;my_sensor_task&#x27;</span>,</span><br><span class="line">    poke_interval=<span class="number">60</span>,    <span class="comment"># check the condition every minute</span></span><br><span class="line">    dag=dag,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Step 6: Using Hooks to Access Secret Methods</p>
+<p>Hooks in Airflow are interfaces to external platforms and databases. They provide a way to access secret methods or credentials. For instance, the PostgresHook can be used to connect with a PostgreSQL database and execute queries.</p>
+<p>Step 7: Exchanging Data Between Tasks</p>
+<p>Airflow provides the XCom feature to let tasks exchange messages or small amounts of data.</p>
+<p>Step 8: Handling Dataset Limitations</p>
+<p>Every dataset has limitations - from incomplete data to incorrect entries. We need to build our pipeline robust enough to handle these anomalies without failing. This can involve creating custom validation rules, using advanced SQL queries for data cleaning, or applying data imputation techniques.</p>
+<p>By following these steps, we can build a reliable and flexible data pipeline using Apache Airflow and Docker. In the next section, we’ll delve into some of the challenges I encountered during this project and the solutions I implemented.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>The project has offered profound insights into the world of workflow orchestration and management, particularly with the use of Apache Airflow and Docker. The process of constructing a data pipeline has demonstrated the power and flexibility these tools provide.</p>
+<p>The key takeaway from this project is the understanding of how Apache Airflow facilitates the automation and orchestration of complex data pipelines. Its comprehensive capabilities such as Directed Acyclic Graphs (DAGs), Operators, Tasks, and Schedulers, allow for a high degree of control and customization over workflow execution. These tools have shown to be especially valuable in managing and troubleshooting workflows with dependencies, and providing visibility and monitoring for running tasks.</p>
+<p>Additionally, the integration of Docker provided a robust and reliable environment for running the workflows. By containerizing the Airflow setup, I was able to create an isolated, reproducible, and portable system which added to the scalability and resilience of the workflow management.</p>
+<p>On a personal level, this project deepened my understanding of Big Data components such as Hive, PostgreSQL, and Elasticsearch and how these tools can be orchestrated using Apache Airflow. Overcoming the challenges presented during the project development not only improved my problem-solving skills but also solidified my understanding of Apache Airflow’s capabilities and Docker’s utility in creating efficient data pipelines.</p>
+<p>In conclusion, this project has been an enlightening journey through the world of data pipeline management. The learning experience was rich, and the challenges encountered were valuable lessons for future projects. It demonstrated the significance of workflow management and orchestration tools in handling complex data operations in a scalable and maintainable way. It was an affirmation of the power that tools like Apache Airflow and Docker have in the field of data engineering and how they can revolutionize the way we handle data workflows.</p>
+<!-- Install Apache Airflow with Docker
+
+Open terminal or CMD and go into Documents/materials
+`cd ~/Documents/`
+`cd Documents/materials`
+
+Key Takeaways
+
+- Airflow is an orchestrator, not a processing framework. Process your gigabytes of data outside of Airflow (i.e. You have a Spark cluster, you use an operator to execute a Spark job, and the data is processed in Spark).
+
+- A DAG is a data pipeline, an Operator is a task.
+
+- An Executor defines how your tasks are executed, whereas a worker is a process executing your task
+
+- The Scheduler schedules your tasks, the web server serves the UI, and the database stores the metadata of Airflow.
+
+See all Commands:
+`airflow -h`
+Commands:
+cheat-sheet Display cheat sheet
+dag-processor Start a standalone Dag Processor instance
+info Show information about current Airflow and environment
+kerberos Start a kerberos ticket renewer
+plugins Dump information about loaded plugins
+rotate-fernet-key Rotate encrypted connection credentials and variables
+scheduler Start a scheduler instance
+standalone Run an all-in-one copy of Airflow
+sync-perm Update permissions for existing roles and optionally DAGs
+triggerer Start a triggerer instance
+version Show the version
+webserver Start a Airflow webserver instance
+
+`airflow tasks test user_processing create_table 2023-02-07` -->
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><p><a target="_blank" rel="noopener" href="https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/learn/lecture/23704726#overview">https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/learn/lecture/23704726#overview</a></p>
+<h4 id="Author"><a href="#Author" class="headerlink" title="Author:"></a>Author:</h4><ul>
+<li>Xiaoge Zhang</li>
 </ul>
-<p>See all Commands:<br><code>airflow -h</code><br>    Commands:<br>      cheat-sheet    Display cheat sheet<br>      dag-processor  Start a standalone Dag Processor instance<br>      info           Show information about current Airflow and environment<br>      kerberos       Start a kerberos ticket renewer<br>      plugins        Dump information about loaded plugins<br>      rotate-fernet-key Rotate encrypted connection credentials and variables<br>      scheduler      Start a scheduler instance<br>      standalone     Run an all-in-one copy of Airflow<br>      sync-perm      Update permissions for existing roles and optionally DAGs<br>      triggerer      Start a triggerer instance<br>      version        Show the version<br>      webserver      Start a Airflow webserver instance</p>
-<p><code>airflow tasks test user_processing create_table 2023-02-07</code></p>
-<p>Reference:<br><a target="_blank" rel="noopener" href="https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/learn/lecture/23704726#overview">https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/learn/lecture/23704726#overview</a></p>
+<style>
+p {
+    text-indent: 2em;
+}
+</style>
 
                 
             </div>
@@ -575,13 +675,13 @@ Open terminal or CMD and go into Documents&amp;#x2F;materialscd ~/Documen">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2023/02/06/Award-2023%20Hackathon/">
+                <a href="/2023/02/18/Project-AIChatbot/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Award:Winner of 2023 Husky Hackathon">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Project:Telco Customer Churn">
                         
-                        <span class="card-title">Award:Winner of 2023 Husky Hackathon</span>
+                        <span class="card-title">Project:Telco Customer Churn</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -592,7 +692,7 @@ Open terminal or CMD and go into Documents&amp;#x2F;materialscd ~/Documen">
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-06
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-18
                         </span>
                         <span class="publish-author">
                             
@@ -605,12 +705,12 @@ Open terminal or CMD and go into Documents&amp;#x2F;materialscd ~/Documen">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Award/">
-                        <span class="chip bg-color">Award</span>
-                    </a>
-                    
                     <a href="/tags/Project/">
                         <span class="chip bg-color">Project</span>
+                    </a>
+                    
+                    <a href="/tags/Data-Anlysis/">
+                        <span class="chip bg-color">Data Anlysis</span>
                     </a>
                     
                 </div>

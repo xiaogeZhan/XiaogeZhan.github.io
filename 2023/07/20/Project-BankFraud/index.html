@@ -1,0 +1,1499 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Project:Big Data Analysis on Bank Account Fraud using Hadoop and Spark, Xiaoge Zhang">
+    <meta name="description" content="Big Data Analysis on Bank Account Fraud using Hadoop and Spark
+
+IntroductionThis project focuses on the analysis of a co">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Project:Big Data Analysis on Bank Account Fraud using Hadoop and Spark | Xiaoge Zhang</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/ABoutme/profile.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Xiaoge Zhang</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/ABoutme/profile.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Xiaoge Zhang</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://blinkfox.github.io/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://blinkfox.github.io/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Project:Big Data Analysis on Bank Account Fraud using Hadoop and Spark</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Project/">
+                                <span class="chip bg-color">Project</span>
+                            </a>
+                        
+                            <a href="/tags/Data-Anlysis/">
+                                <span class="chip bg-color">Data Anlysis</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2023-07-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Big-Data-Analysis-on-Bank-Account-Fraud-using-Hadoop-and-Spark"><a href="#Big-Data-Analysis-on-Bank-Account-Fraud-using-Hadoop-and-Spark" class="headerlink" title="Big Data Analysis on Bank Account Fraud using Hadoop and Spark"></a>Big Data Analysis on Bank Account Fraud using Hadoop and Spark</h1><img src="/medias/Fraud/Picture0.png" class="img-large" alt="">
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This project focuses on the analysis of a compelling dataset from <strong>Kaggle</strong>, titled <strong>“Bank Account Fraud Dataset - NeurIPS 2022.”</strong> The dataset provides a comprehensive and granular view of various <strong>banking transactions</strong>, emphasizing <strong>fraudulent activities</strong>. It comprises a myriad of variables such as account balance, transaction details, geographical information, and more, offering diverse and deep insight into the patterns and behaviors that typify fraudulent transactions.</p>
+<p>In our analysis, we aim to leverage big data technologies to efficiently process and examine this large dataset. With the rise of digital banking and online transactions, the volume of financial data that institutions need to monitor has grown exponentially. Traditional data processing methods often fall short of handling such vast volumes of data in a timely manner. Therefore, we are turning to big data analytics, a field that excels in handling large, complex datasets and extracting valuable information from them. By utilizing frameworks such as Hadoop and Apache Spark, we will be able to manage and analyze this dataset in a distributed and parallel manner, significantly speeding up our computation times and improving our ability to identify key trends, patterns, and anomalies related to bank fraud. The ultimate goal of this project is to shed light on the characteristics of fraudulent transactions, providing valuable insights that can aid in the development of more effective fraud detection and prevention strategies.</p>
+<h2 id="Dataset-Bank-Account-Fraud-Dataset-Suite-NeurIPS-2022"><a href="#Dataset-Bank-Account-Fraud-Dataset-Suite-NeurIPS-2022" class="headerlink" title="Dataset: Bank Account Fraud Dataset Suite (NeurIPS 2022)"></a>Dataset: Bank Account Fraud Dataset Suite (NeurIPS 2022)</h2><p>The Bank Account Fraud (BAF) suite of datasets, published at NeurIPS 2022, comprises six different synthetic bank account fraud tabular datasets. Comes from Kaggle: <a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/sgpjesus/bank-account-fraud-dataset-neurips-2022?select=Base.csv">https://www.kaggle.com/datasets/sgpjesus/bank-account-fraud-dataset-neurips-2022?select=Base.csv</a></p>
+<p>Each dataset within the suite is distinct and presents controlled types of bias, making them a valuable resource for evaluating methods in machine learning and fair machine learning. The datasets are:</p>
+<p>● Realistic, based on real-world datasets for fraud detection</p>
+<p>● Biased, each presenting distinct controlled types of bias</p>
+<p>● Imbalanced, reflecting a low prevalence of positive class</p>
+<p>● Dynamic, with temporal data and observed distribution shifts</p>
+<p>● Privacy-preserving, through the application of differential privacy techniques, feature encoding, and generative models (CTGAN)</p>
+<p>Each dataset consists of <strong>1 million instances</strong> with <strong>32 realistic features</strong> used in fraud detection, including a column for “month” (temporal information) and protected attributes such as <code>age group</code>, <code>employment status</code>, and <code>income percentage</code>.</p>
+<img src="/medias/Fraud/Picture1.png" class="img-large" alt="">
+
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>The dataset includes features that are critical to understanding the patterns behind fraudulent transactions. These features include but are not limited to:</p>
+<img src="/medias/Fraud/Picture2.png" class="img-large" alt="">
+
+<p>Feature Description</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fraud label</td>
+<td>Indicator of fraudulent transaction</td>
+</tr>
+<tr>
+<td>Annual income of the applicant</td>
+<td>Income of the applicant for a specific year</td>
+</tr>
+<tr>
+<td>Similarity between email and applicant’s name</td>
+<td>How closely the applicant’s name matches their email address</td>
+</tr>
+<tr>
+<td>Number of months in previous registered address</td>
+<td>Duration of stay at the previous address</td>
+</tr>
+<tr>
+<td>Months in the currently registered address</td>
+<td>Duration of stay at the current address</td>
+</tr>
+<tr>
+<td>Applicant’s age</td>
+<td>Age of the applicant</td>
+</tr>
+<tr>
+<td>Number of days passed since the application was made</td>
+<td>Time elapsed since the application was submitted</td>
+</tr>
+<tr>
+<td>Initial transferred amount for application</td>
+<td>Initial amount transferred when application was made</td>
+</tr>
+<tr>
+<td>Credit payment plan type</td>
+<td>Type of the credit payment plan</td>
+</tr>
+<tr>
+<td>Number of applications within the same zip code in the last 4 weeks</td>
+<td>Applications count in the same zip code in the last 4 weeks</td>
+</tr>
+<tr>
+<td>Velocity of total applications made in various time frames</td>
+<td>Speed at which applications are being made</td>
+</tr>
+<tr>
+<td>Number of total applications in the selected bank branch in the last 8 weeks</td>
+<td>Total applications in a specific branch in the last 8 weeks</td>
+</tr>
+<tr>
+<td>Number of emails for applicants with the same date of birth in the last 4 weeks</td>
+<td>Number of emails for same birthdate applicants in the last 4 weeks</td>
+</tr>
+<tr>
+<td>Employment status of the applicant</td>
+<td>Applicant’s current employment status</td>
+</tr>
+<tr>
+<td>Internal score of application risk</td>
+<td>Risk score given to the application by the bank</td>
+</tr>
+<tr>
+<td>Domain of application email</td>
+<td>Domain type of the applicant’s email (free or paid)</td>
+</tr>
+<tr>
+<td>Current residential status for the applicant</td>
+<td>Current housing situation of the applicant</td>
+</tr>
+<tr>
+<td>Validity of provided phones</td>
+<td>Whether the provided phone numbers are valid</td>
+</tr>
+<tr>
+<td>How old is the previous account (if held) in months</td>
+<td>Age of the previous account (if any)</td>
+</tr>
+<tr>
+<td>If the applicant has other cards from the same banking company</td>
+<td>Whether the applicant has other cards from the same bank</td>
+</tr>
+<tr>
+<td>Applicant’s proposed credit limit</td>
+<td>Credit limit proposed by the applicant</td>
+</tr>
+<tr>
+<td>If the origin country of the request is different from the bank’s country</td>
+<td>Whether the application is from a different country</td>
+</tr>
+<tr>
+<td>Online source of application (browser or mobile app)</td>
+<td>Where the application was made (browser or mobile app)</td>
+</tr>
+<tr>
+<td>Length of user session on the banking website</td>
+<td>Duration of the user’s session on the bank’s website</td>
+</tr>
+<tr>
+<td>Operating system of the device that made the request</td>
+<td>OS of the device used to make the request</td>
+</tr>
+<tr>
+<td>User option on session logout</td>
+<td>User’s action when logging out</td>
+</tr>
+<tr>
+<td>Number of distinct emails from the used device in the last 8 weeks</td>
+<td>Unique email counts from the device in the last 8 weeks</td>
+</tr>
+<tr>
+<td>Number of fraudulent applications with the used device</td>
+<td>Count of fraudulent applications made from the device</td>
+</tr>
+<tr>
+<td>Month where the application was made</td>
+<td>Month of application submission</td>
+</tr>
+</tbody></table>
+<h2 id="Hive-queries-analysis"><a href="#Hive-queries-analysis" class="headerlink" title="Hive queries analysis"></a>Hive queries analysis</h2><p>The <strong>Base_table CSV file</strong> was imported into HDFS from the local machine using <strong>Hive File browser</strong>. An external <strong>Hive table</strong> was created using the file location. The table contains several columns including fraud_bool, income, name_email_similarity, customer_age, payment_type, credit_risk_score, source, and month. There are a total of 201,612 records in the table.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> Base (</span><br><span class="line">fraud_bool <span class="type">INT</span>,</span><br><span class="line">income <span class="type">FLOAT</span>,</span><br><span class="line">name_email_similarity <span class="type">FLOAT</span>,</span><br><span class="line">customer_age <span class="type">INT</span>,</span><br><span class="line">payment_type STRING,</span><br><span class="line">credit_risk_score <span class="type">INT</span>,</span><br><span class="line">source STRING,</span><br><span class="line"><span class="keyword">month</span> <span class="type">INT</span></span><br><span class="line">)</span><br><span class="line"><span class="type">ROW</span> FORMAT DELIMITED</span><br><span class="line">FIELDS TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">STORED <span class="keyword">AS</span> TEXTFILE</span><br><span class="line">LOCATION ‘<span class="operator">/</span><span class="keyword">User</span><span class="operator">/</span>cloudera<span class="operator">/</span><span class="string">&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture3.png" class="img-large" alt="">
+
+<p><strong>Question: How many customers of each age have a fraud bool of 1?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> customer_age, <span class="built_in">COUNT</span>(\<span class="operator">*</span>)</span><br><span class="line"><span class="keyword">FROM</span> Base</span><br><span class="line"><span class="keyword">WHERE</span> fraud_bool <span class="operator">=</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> customer_age;</span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture4.png" class="img-large" alt="">
+
+<p>The analysis shows a clear trend in the relationship between age and likelihood of fraudulent activities. Customers in the age bracket of <strong>10 to 40 years</strong> show an <strong>increasing</strong> likelihood of fraud, with the <strong>peak incidence at age 40</strong>. Beyond the age of 40, the likelihood of fraudulent activities begins to decline. This trend could suggest that individuals in their prime working years have a higher tendency to be associated with fraudulent activities. We should consider this age-related trend in the development of our risk models and fraud detection systems, while remaining mindful of the multifaceted nature of fraudulent behavior.</p>
+<p><code>This trend could suggest that individuals in their prime working years have a higher tendency to be associated with fraudulent activities. </code></p>
+<p><strong>Question: How does income relate to the likelihood of fraud?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> income, <span class="built_in">AVG</span>(fraud_bool) <span class="keyword">as</span> avg_fraud</span><br><span class="line"><span class="keyword">FROM</span> Base</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> income</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> income;</span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture5.png" class="img-large" alt="">
+
+<p>This question and query can provide insights on whether higher or lower incomes are associated with higher rates of fraudulent activity. The output can be plotted on a graph, where the <strong>x-axis</strong> represents <strong>average fraud rate</strong> and the <strong>y-axis</strong> represents the <strong>income</strong>. This suggests that higher-income individuals are more likely to be associated with fraudulent activities. It’s important to interpret this cautiously; while income can be a significant factor, it’s among several other indicators that contribute to fraud risk. We recommend incorporating this finding into our risk models to enhance fraud detection and prevention measures, while simultaneously considering other crucial variables.</p>
+<p><code>We can see from this plot that higher-income individuals are more likely to be associated with fraudulent activities.  </code></p>
+<p><strong>Question: What’s the distribution of payment types among fraudulent transactions?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> payment_type, <span class="built_in">COUNT</span>(\<span class="operator">*</span>) <span class="keyword">as</span> num_frauds</span><br><span class="line"><span class="keyword">FROM</span> Base</span><br><span class="line"><span class="keyword">WHERE</span> fraud_bool <span class="operator">=</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> payment_type</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> num_frauds <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture6.png" class="img-large" alt="">
+
+<p>The pie chart shows a diversity in fraudulent activities across different payment types. Notably, <strong>“AB” tops</strong> the chart with the <strong>largest</strong> fraction of frauds. It is closely followed by “”AC”.</p>
+<p><strong>Question: What are the different sources of transactions and how do they relate to the fraud rate?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> source, <span class="built_in">AVG</span>(fraud_bool) <span class="keyword">as</span> avg_fraud</span><br><span class="line"><span class="keyword">FROM</span> Base</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> source</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> avg_fraud <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture7.png" class="img-large" alt="">
+
+<p>Analysis shows that transactions made through <strong>teleapp</strong> have a <strong>higher fraud rate</strong> than those conducted via the <strong>internet</strong>. This suggests teleapp transactions could be more vulnerable to fraud, warranting additional scrutiny or security measures to mitigate potential fraudulent activities.</p>
+<p><strong>Question: What’s the monthly trend of fraudulent transactions?</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">month</span>, <span class="built_in">COUNT</span>(\<span class="operator">*</span>) <span class="keyword">as</span> num_frauds</span><br><span class="line"><span class="keyword">FROM</span> Base</span><br><span class="line"><span class="keyword">WHERE</span> fraud_bool <span class="operator">=</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">month</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">month</span>;</span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture8.png" class="img-large" alt="">
+
+<p>Our analysis shows a clear monthly trend in fraudulent transactions. The <strong>beginning of the year</strong> sees a <strong>lower rate of fraud</strong>, which <strong>significantly increases from March onwards</strong>. This suggests that heightened vigilance and preventive measures may be necessary during this latter period to mitigate potential fraud.</p>
+<h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><p>The primary objective of this study is to identify significant clustering, correlations, and patterns in our extensive customer database. This process will allow us to better understand the factors that contribute to fraudulent activities and consequently develop preventive strategies.</p>
+<p>Our analysis is based on a dataset consisting of one million customers. Each customer record includes various attributes such as income, credit risk score, housing status, number of months at the current address, number of months at the previous address, age, days since the last request, and more. In total, we have more than 20 distinct attributes, each providing a different perspective on customer behavior.</p>
+<p>The crucial part of the data is the ‘fraud_bool’ field, which indicates whether a transaction made by the customer was fraudulent (1) or not (0). Our primary aim is to detect patterns that increase the likelihood of fraud based on other attributes.<br>To uncover these patterns, we use methods of descriptive statistics, correlation analysis, and clustering techniques. Descriptive statistics provide an initial insight into data, correlation analysis points out the relationships between variables, and clustering helps group similar customers, making the patterns easier to understand and interpret.</p>
+<p>Ultimately, our goal is to develop a comprehensive understanding of the factors that increase the risk of fraudulent transactions. This understanding will serve as a basis for developing preventive strategies and, if applied effectively, could significantly reduce the prevalence of fraud in our customer transactions. This contribution will enhance our risk management strategies and ensure a safer environment for our customers.</p>
+<p>In conclusion, our methodology involves comprehensive data analysis to identify critical patterns and correlations in our customer data, aiming to improve our fraud detection and prevention capabilities significantly.</p>
+<h2 id="How-and-when"><a href="#How-and-when" class="headerlink" title="How and when:"></a>How and when:</h2><p><strong>Data Acquisition and Preprocessing with Hadoop</strong>: We procure a dataset of one million customer records from our database. This dataset, which forms the foundation for our analysis, is aimed at identifying significant correlations, patterns, and clusters in the data related to fraudulent transactions. We use Hadoop’s distributed file system (HDFS) to store and process our large dataset. This involves cleaning the data and dealing with missing or anomalous values, tasks which can be efficiently accomplished using Hadoop’s MapReduce paradigm.</p>
+<p><strong>Exploratory Data Analysis</strong>: An initial descriptive statistical analysis is performed to understand the basic characteristics of the data. It involves calculating measures such as mean, median, minimum, maximum, and standard deviation for each variable in the dataset.</p>
+<p><strong>Correlation Analysis</strong>: We perform correlation analysis to uncover any significant relationships between the different customer attributes. This step is crucial for understanding which variables might be influencing the ‘fraud_bool’ outcome.</p>
+<p>Clustering Model Development and Evaluation with Spark: The preprocessed data is then loaded into Apache Spark for analysis. We first perform exploratory data analysis using Spark to understand the basic characteristics of our data. Following this, we use Spark’s Machine Learning Library (MLlib) to conduct a correlation analysis, revealing significant relationships between different customer attributes. To identify customer clusters with high rates of fraudulent transactions, we apply a clustering algorithm, also available in Spark’s MLlib. The performance of our model is then evaluated and iterated upon until we achieve satisfactory results.</p>
+<p><strong>Strategies Development and Deployment</strong>: Based on our insights, we develop strategies to prevent fraudulent transactions. This could include stricter checks for specific clusters of customers or tailoring our fraud detection models to consider the patterns identified in this study. Our strategies are then deployed and continuously monitored for effectiveness.</p>
+<p>Throughout the process, we will iterate and refine our methods as needed, continuously learning from our data to improve our ability to detect and prevent fraudulent transactions.<br>Real-world Example<br>Problem:</p>
+<p>The surge in digital transactions has brought along an unwanted companion - fraud. It poses a daunting challenge to both financial institutions and regulatory bodies. The pertinent question we aim to address is: “How can we leverage machine learning to predict and mitigate fraudulent transactions in banking?”</p>
+<h2 id="Goal："><a href="#Goal：" class="headerlink" title="Goal："></a>Goal：</h2><p>The goal here is to develop a clustering model to detect and flag potentially <code>fraudulent transactions</code>. These models will examine specific elements of customer transactions and behavior such as transaction amount, time, location, and customer’s past behavior patterns, etc. The aim of this task is to accurately categorize transactions into ‘normal’ and ‘suspicious’ clusters, enhancing our business’s safety and protecting our customers from potential financial loss.</p>
+<h2 id="Business-Question"><a href="#Business-Question" class="headerlink" title="Business Question:"></a>Business Question:</h2><p>● What <strong>percentage</strong> of transactions are fraudulent?</p>
+<p>● Fraudulent with <strong>age</strong> relationship?</p>
+<p>● Fraudulent with <strong>annual income</strong> relationship?</p>
+<p>● Are there specific <strong>transaction types</strong> that are more likely to be fraudulent? Can we identify any patterns or trends in fraudulent transactions over time?</p>
+<p>● Does the <strong>source</strong> of the transaction (TELEAPP vs INTERNET) have an impact on the likelihood of it being fraudulent?</p>
+<p>● What is the relationship between the <strong>similarity of names and emails</strong> and the frequency of fraudulent transactions?</p>
+<p>● How does the <strong>housing status</strong> affect the likelihood of fraudulent transactions?</p>
+<p>● How does <strong>employment status</strong> affect the average credit risk score and the occurrence of fraudulent transactions?</p>
+<p>● Are there any <strong>geographic patterns</strong> in fraudulent transactions? Are certain regions more prone to fraud than others? Fraudulent Transactions &amp; Zipcode</p>
+<p>● Are there specific <strong>times</strong> of the day, days of the week, or months of the year when fraudulent transactions are more common?</p>
+<h2 id="Methodology：The-general-approach-would-involve-the-following-steps"><a href="#Methodology：The-general-approach-would-involve-the-following-steps" class="headerlink" title="Methodology：The general approach would involve the following steps:"></a>Methodology：The general approach would involve the following steps:</h2><h2 id="Data-Collection"><a href="#Data-Collection" class="headerlink" title="Data Collection:"></a>Data Collection:</h2><p>Assemble a dataset of customer transactions from our business. The more varied the dataset, the better the model will perform on unseen data.<br>● Load the Data</p>
+<p>To begin, we must first load the data into our working environment. In R, we can accomplish this by utilizing the read.csv() function. The code is as follows:<br><code>df &lt;- read.csv(&quot;path_to_your_file/Base.csv&quot;)</code><br>This code reads the CSV file, “Base.csv,” from the specified path and loads it into the data frame ‘df’ for further manipulation and analysis.</p>
+<h2 id="Pre-processing"><a href="#Pre-processing" class="headerlink" title="Pre-processing:"></a>Pre-processing:</h2><p>This involves cleaning up the data, which may involve handling missing data, outlier detection, feature scaling, and other data normalization processes.</p>
+<h2 id="Data-Cleaning"><a href="#Data-Cleaning" class="headerlink" title="Data Cleaning:"></a>Data Cleaning:</h2><p>After loading the data, the next crucial step is data cleaning. This process involves <strong>handling missing values</strong>, <strong>detecting outliers</strong>, and ensuring that the data is in the <strong>correct format</strong> for analysis. It’s a critical step as the quality of data and the validity of statistical inference from that data depend heavily on the extent to which it is ‘clean’.<br><img src="/medias/Fraud/Picture9.png" class="img-large" alt=""></p>
+<h2 id="Feature-Engineering"><a href="#Feature-Engineering" class="headerlink" title="Feature Engineering:"></a>Feature Engineering:</h2><p>Define a set of <strong>features</strong> that are relevant to the problem at hand, such as <code>&#39;Transaction Amount&#39;</code>, <code>&#39;Transaction Time&#39;</code>, <code>&#39;Customer Past Behavior&#39;</code>, <code>&#39;Location&#39;</code>, etc. These features form the input to our clustering model.</p>
+<h2 id="Business-Questions-And-Exploratory-Data-Analysis-EDA"><a href="#Business-Questions-And-Exploratory-Data-Analysis-EDA" class="headerlink" title="Business Questions And Exploratory Data Analysis (EDA):"></a>Business Questions And Exploratory Data Analysis (EDA):</h2><p>With a clean dataset, we can then perform our analysis to discover clusters, correlations, and patterns.</p>
+<p>● <strong>What percentage of transactions are fraudulent?</strong></p>
+<p>1 if fraud, 0 if legit</p>
+<img src="/medias/Fraud/Picture10.png" class="img-large" alt="">
+
+<p>In analyzing the distribution of transactions in the dataset, it is observed that a small fraction of the transactions are fraudulent. Specifically, from the pie chart, it is evident that <strong>fraudulent transactions</strong> constitute approximately <strong>1.1% of the total transactions</strong>. The overwhelming majority, which is <strong>98.9%, are non-fraudulent transactions</strong>. This indicates that while fraud is present, it represents a relatively minor portion of the overall transaction activity. It is crucial for businesses and financial institutions to remain vigilant and employ robust fraud detection mechanisms to identify and mitigate these fraudulent transactions, despite their scarcity, to ensure the security and integrity of financial operations.</p>
+<p>● <strong>Fraudulent with age relationship?</strong></p>
+<img src="/medias/Fraud/Picture11.png" class="img-large" alt="">
+
+<p>The dataset reveals a notable relationship between age and the likelihood of a transaction being fraudulent. On average, <strong>fraudulent transactions are associated with an older age group</strong>, with the average age being <strong>40 years old</strong>. In contrast, <strong>non-fraudulent transactions are associated with a younger demographic</strong>, having an average age of <strong>33 years old</strong>.</p>
+<p>● <strong>Fraudulent with annual income relationship?</strong></p>
+<img src="/medias/Fraud/Picture12.png" class="img-large" alt="">
+
+<p>The annual income of the applicant in quantiles. Ranges between [0, 1].</p>
+<p>The plot indicates a relationship between the annual income of the applicant and the likelihood of a transaction being fraudulent.</p>
+<p>The annual income is represented in quantiles, ranging from <strong>0 to 1</strong>, where a higher value represents a higher income.</p>
+<p>On average, <strong>non fraudulent transactions</strong> are associated with a <strong>lower annual income quantile</strong>, with an average value of <strong>0.56</strong>.</p>
+<p>Conversely, <strong>fraudulent transactions</strong> are associated with a <strong>higher annual income quantile</strong>, having an average value of <strong>0.67</strong>.</p>
+<p><code>This suggests that individuals with relatively higher annual incomes are more likely to be involved in fraudulent transactions compared to those with lower incomes. </code></p>
+<p>●<strong>Are there specific transaction types that are more likely to be fraudulent? Can we identify any patterns or trends in fraudulent transactions over time?</strong></p>
+<img src="/medias/Fraud/Picture13.png" class="img-large" alt="">
+
+<p>Based on the data provided in the pie chart, we can infer that different payment types have varying levels of fraudulent activities. The payment type <strong>“AB”</strong> stands out with the <strong>highest percentage of fraudulent transactions, accounting for 37.0554%</strong> of the total fraudulent activities. This is followed by payment type “AA” with 25.8249%, payment type “AC” with 25.2071%, and “AD” with 11.8837%. The payment type “AE” had the least fraudulent activities, accounting for only 0.0289% of the total count.</p>
+<p>● <strong>Does the source of the transaction (TELEAPP vs INTERNET) have an impact on the likelihood of it being fraudulent?</strong></p>
+<img src="/medias/Fraud/Picture14.png" class="img-large" alt="">
+
+<p>From the plot, it’s clear that the count of fraudulent transactions varies significantly based on the transaction source. There are far <strong>more fraudulent transactions</strong> originating from the <strong>INTERNET (992,952)</strong> than from TELEAPP (7,048).</p>
+<p>● <strong>What is the relationship between the similarity of names and emails and the frequency of fraudulent transactions?</strong></p>
+<img src="/medias/Fraud/Picture15.png" class="img-large" alt="">
+
+<p>The dual histogram indicates an interesting correlation between the similarity of name and email and fraudulent transactions. As the name-email similarity score ranges from 0 to 1, where a higher score indicates a higher similarity, the number of fraudulent transactions displays a clear trend.</p>
+<p>Initially, the count of fraudulent transactions is relatively low when the name-email similarity is less than 0.1. As the similarity score increases, specifically from 0.1 to about 0.9, the count of fraudulent transactions also shows a significant increase. This implies that transactions are more likely to be fraudulent when there is a moderate to high similarity between the name and email.<br>However, the pattern is not monotonically increasing. When the similarity score goes beyond 0.9, the number of fraudulent transactions drops sharply. Specifically, it falls dramatically after the similarity score surpasses 0.95 and stays low until the score reaches around 0.984. After that, the count of fraudulent transactions surges, reaching its peak at a similarity score of approximately 0.992.</p>
+<p>● <strong>How does the housing status affect the likelihood of fraudulent transactions?</strong></p>
+<img src="/medias/Fraud/Picture16.png" class="img-large" alt="">
+
+<p>The stacked bar chart represents the relationship between housing status and fraudulent transactions. Different housing statuses are categorized from ‘BA’ to ‘BG’, and each category displays the count of fraudulent transactions, the number of days since request, and the ‘fraud_bool’ which probably indicates a boolean variable for whether a transaction is fraudulent or not.</p>
+<p>➢ ‘BG’ status had 252 fraudulent transactions over 352.8 days, with a fraud_bool value of 1.</p>
+<p>➢ ‘BF’ status reported 1,669 fraudulent transactions over 2,763.9 days, with a fraud_bool of 7.</p>
+<p>➢ ‘BD’ status witnessed 26,161 fraudulent transactions over 32,739.5 days, with a fraud_bool of 226.</p>
+<p>➢ ‘BE’ status recorded 169,135 fraudulent transactions over 163,782.6 days, and a fraud_bool of 582.</p>
+<p>➢ ‘BA’ status had a massive rise to 169,675 fraudulent transactions over 102,903.6 days, with a fraud_bool of 6,357.</p>
+<p>➢ Finally, ‘BB’ and ‘BC’ statuses reported 260,965 and 372,143 fraudulent transactions respectively, over certain durations, with fraud_bool values of 1,568 and 2,288.</p>
+<p>In conclusion, housing status influences the count of fraudulent transactions, but a higher count does not necessarily mean a higher percentage of fraudulent transactions, as indicated by the fraud_bool values.</p>
+<p>● <strong>How does employment status affect the average credit risk score and the occurrence of fraudulent transactions?</strong></p>
+<img src="/medias/Fraud/Picture17.png" class="img-large" alt="">
+
+<p>The bar plot shows the relationship between employment status, the average credit risk score, and the number of fraudulent transactions.</p>
+<p>➢ ‘CA’: The highest score at 135.79, and a massive fraud count at 730,252.</p>
+<p>➢ ‘CG’: A similar score of 132.14, but significantly fewer fraud cases at 453.</p>
+<p>➢ ‘CD’: An average credit risk score of 98.14 and 26,522 fraudulent transactions.</p>
+<p>➢ ‘CF’: Credit score of 106.72, and fraud count is 44,034.</p>
+<p>➢ ‘CE’: Score is 106.82, with 22,693 fraud cases.</p>
+<p>➢ ‘CB’: The score jumps to 123.40, and fraud count to 138,288.</p>
+<p>➢ ‘CC’: Score increases to 131.87, yet fraud drops to 37,758.</p>
+<p>The plot indicates a complex relationship between employment status, credit risk score, and fraudulent transactions. Higher credit scores do not necessarily equate to more fraud cases, as shown by the ‘CG’ and ‘CA’ statuses.</p>
+<p>● <strong>What is the relationship between the average number of fraudulent transactions, the average customer age, and the type of device operating system they use?</strong></p>
+<img src="/medias/Fraud/Picture18.png" class="img-large" alt="">
+
+<p>The heatmap analysis shows how the average age of customers and average number of fraudulent transactions differ based on the device operating system:</p>
+<p>➢ X11: Users have the highest average age of 36 years, and a moderate fraud rate at 0.01121.</p>
+<p>➢ Windows: The average customer age is even higher at 36 years, and it also has the highest fraud rate at 0.02469.</p>
+<p>➢ Macintosh: The average customer age is around 31 years and the average rate of fraudulent transactions is 0.01397.</p>
+<p>➢ Other OS: Average customer age is slightly higher at 32 years, while the average fraud rate is lower at 0.00576.</p>
+<p>➢ Linux: Users are older with an average age of 34 years and have a relatively low fraud rate at 0.00515.</p>
+<p>From this, we see that different device OS are associated with different customer ages and fraud rates. Windows, despite having an older average user base, experiences the highest rate of fraudulent transactions.</p>
+<p>● <strong>Are there any geographic patterns in fraudulent transactions? Are certain regions more prone to fraud than others? Fraudulent Transactions &amp; Zipcode</strong></p>
+<img src="/medias/Fraud/Picture19.png" class="img-large" alt="">
+
+<img src="/medias/Fraud/Picture20.png" class="img-large" alt="">
+
+<p>From above plots. In <strong>Massachusetts</strong>, we observe the <strong>highest and most concentrated instances of fraudulent transactions</strong>. A multitude of postal code areas display significant counts of fraudulent activity. For example, the 01749 postal code area reports 281 fraudulent transactions, 01740 has 327, 01522 records 391, and 01473 notes an alarming 452 fraudulent transactions.<br>In Rhode Island, the number of fraudulent transactions is slightly less than in Massachusetts but still considerably high. For example, the 02904 postal code area has 103 fraudulent transactions, the 02912 area has 108, the 02907 area has 140, and the 02863 area has 142.</p>
+<p>In New Hampshire, the number of fraudulent transactions reduces further but remains significant. For instance, the 03816 postal code area has 42 fraudulent transactions, the 03245 area has 81, the 03247 area has 86, and the 03299 area has 98.</p>
+<p>In Vermont, the number of fraudulent transactions reduces further, with most areas seeing less than 10 fraudulent transactions. For instance, the 05401 and 05451 postal code areas each have 6 fraudulent transactions, the 05446 area has 8, the 05406 area has 10, and the 05407 area has 15.</p>
+<p>In Maine, the number of fraudulent transactions is also low but slightly higher than in Vermont. For example, the 04984 postal code area has 12 fraudulent transactions, the 04221 area has 24, the 04228 area has 31, and the 04266 area has 49.</p>
+<p>In Puerto Rico, fraudulent transactions are highly prevalent but not densely concentrated. Postal codes 00646, 00902, 00979, and 00910 report 439, 650, 671, and 684 fraudulent transactions respectively, suggesting a widespread rather than localized issue.</p>
+<p>Though the number of fraudulent transactions in other areas like Rhode Island, New Hampshire, Vermont, Maine, and Puerto Rico is also noteworthy, none match the density and intensity of fraudulent activity seen in Massachusetts. This implies that while fraudulent transactions are a universal issue, they are particularly prevalent in Massachusetts, thus necessitating further investigation and preventative measures in the state.</p>
+<p>● <strong>Are there specific times of the day, days of the week, or months of the year when fraudulent transactions are more common?</strong></p>
+<img src="/medias/Fraud/Picture21.png" class="img-large" alt="">
+
+<p>The area plot demonstrates the correlation between the month and the number of fraudulent transactions:</p>
+<p>➢ In the month of July (7), there were 96,843 fraudulent transactions.</p>
+<p>➢ In June (6), there were 108,168 fraudulent transactions.</p>
+<p>➢ May (5) saw a further increase to 119,323 fraudulent transactions.</p>
+<p>➢ In January (1), the count reached 127,620 fraudulent transactions.</p>
+<p>➢ April (4) had a similar count, with 127,691 fraudulent transactions.</p>
+<p>➢ February (2) experienced a rise in fraudulent transactions, with a total of 136,979.</p>
+<p>➢ Finally, <strong>March (3)</strong> had the <strong>highest count of fraudulent transactions, with a total of 150,936</strong>.</p>
+<p>From this plot, we can see that the number of fraudulent transactions tends to increase over the months, with <strong>March</strong> reporting the <strong>highest number</strong>. This may suggest that the time of the year influences the occurrence of fraudulent transactions.</p>
+<h2 id="Correlations-Analysis："><a href="#Correlations-Analysis：" class="headerlink" title="Correlations Analysis："></a>Correlations Analysis：</h2><p>Is there a correlation between the transaction amount and the likelihood of fraud? Are there any other correlations in the data that could help predict fraud?</p>
+<img src="/medias/Fraud/Picture22.png" class="img-large" alt="">
+
+<p>This report analyzes the correlation between various features in a dataset related to bank account fraud. The dataset includes features such as fraud_bool, income, name_email_similarity, prev_address_months_count, and others. Correlation coefficients range from -1 to 1, where -1 indicates a perfect negative correlation, 1 indicates a perfect positive correlation, and 0 indicates no correlation.</p>
+<p>I. Fraud and Credit Risk Score: There is a positive correlation between fraud_bool and credit_risk_score (0.071), suggesting that as the credit risk score increases, the likelihood of fraud also increases, though the correlation is weak.</p>
+<p>II. Fraud and Customer Age: There is a weak positive correlation between fraud_bool and customer_age (0.063), indicating that older customers are slightly more likely to be involved in fraud.<br>III. Income and Credit Risk Score: There is a positive correlation between income and credit_risk_score (0.171), suggesting that individuals with higher income tend to have higher credit risk scores.</p>
+<p>IV. Income and Customer Age: There is a positive correlation between income and customer_age (0.126), indicating that older individuals tend to have higher incomes.</p>
+<p>V. Name-Email Similarity and Current Address Months Count: There is a positive correlation between name_email_similarity and current_address_months_count (0.050), suggesting that individuals with more similar names and emails tend to have lived at their current address for longer.</p>
+<p>VI. Previous and Current Address Months Count: There is a strong negative correlation between prev_address_months_count and current_address_months_count (-0.272), indicating that individuals who have lived at their previous address for a longer time tend to have lived at their current address for a shorter time.</p>
+<p>VII. Credit Risk Score and Proposed Credit Limit: There is a strong positive correlation between credit_risk_score and proposed_credit_limit (0.606), suggesting that individuals with higher credit risk scores are likely to have higher proposed credit limits.</p>
+<p>VIII. Keep Alive Session and Fraud: There is a weak negative correlation between keep_alive_session and fraud_bool (-0.050), suggesting that fraud is less likely to occur in sessions that are kept alive.</p>
+<h2 id="Model-Training-amp-Clustering-Analysis"><a href="#Model-Training-amp-Clustering-Analysis" class="headerlink" title="Model Training&amp;Clustering Analysis:"></a>Model Training&amp;Clustering Analysis:</h2><p>Use a clustering algorithm (like K-means, DBSCAN, or Hierarchical clustering) to learn from this data. The algorithm forms clusters of transactions based on similarities and dissimilarities among the input features.<br>● **Load libraries:**The <code>sparklyr</code> library is used for connecting to Apache Spark, <code>dplyr</code> is used for data manipulation, <code>cluster</code> is used for cluster analysis, and <code>ggplot2</code> is used for visualization.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Load libraries</span></span><br><span class="line">library<span class="punctuation">(</span>sparklyr<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>cluster<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>● <strong>Connect to Spark:</strong> A connection is established to Apache Spark using the <code>spark_connect()</code> function.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Connect to Spark</span></span><br><span class="line"></span><br><span class="line">Sys.setenv<span class="punctuation">(</span>SPARK_HOME<span class="operator">=</span><span class="string">&quot;/Users/mac/Desktop/spark-3.4.0-bin-hadoop3&quot;</span><span class="punctuation">)</span></span><br><span class="line">sc <span class="operator">&lt;-</span> spark_connect<span class="punctuation">(</span>master <span class="operator">=</span> <span class="string">&quot;local&quot;</span><span class="punctuation">)</span></span><br><span class="line">● Load data<span class="operator">:</span> The Base data is loaded into a Spark DataFrame using read.csv<span class="punctuation">(</span><span class="punctuation">)</span> <span class="keyword">function</span> and then transferred to Spark using copy_to<span class="punctuation">(</span><span class="punctuation">)</span> function.</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load data</span></span><br><span class="line"></span><br><span class="line">setwd<span class="punctuation">(</span><span class="string">&#x27;/Users/mac/Desktop/A-school/3-6110&#x27;</span><span class="punctuation">)</span></span><br><span class="line">Base <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&#x27;Base.csv&#x27;</span><span class="punctuation">)</span></span><br><span class="line">Base_tbl <span class="operator">&lt;-</span> copy_to<span class="punctuation">(</span>sc<span class="punctuation">,</span> Base<span class="punctuation">,</span> <span class="string">&quot;Base&quot;</span><span class="punctuation">,</span> overwrite <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span> <span class="comment"># overwrite the same table if it exists</span></span><br></pre></td></tr></table></figure>
+
+<p>● <strong>Select the relevant variables:</strong> We use dplyr’s <code>select()</code> function to choose the relevant variables from the Base data frame and store them in a new data frame df_selected.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Continue to use Base_tbl as the Spark dataframe (tbl)</span></span><br><span class="line"></span><br><span class="line">df_selected <span class="operator">&lt;-</span> Base_tbl <span class="operator">%&gt;%</span></span><br><span class="line">select<span class="punctuation">(</span>income<span class="punctuation">,</span> credit_risk_score<span class="punctuation">,</span> days_since_request<span class="punctuation">,</span> proposed_credit_limit<span class="punctuation">,</span> customer_age<span class="punctuation">)</span></span><br><span class="line">● Normalize the data<span class="operator">:</span> This step is crucial <span class="keyword">for</span> clustering as it ensures <span class="built_in">all</span> variables contribute equally to the analysis. Variables with larger scales could dominate the clustering otherwise. The scale<span class="punctuation">(</span><span class="punctuation">)</span> <span class="keyword">function</span> standardizes the variables to have a mean of <span class="number">0</span> and standard deviation of <span class="number">1.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalize my data</span></span><br><span class="line"></span><br><span class="line">df_selected <span class="operator">&lt;-</span> sdf_scale<span class="punctuation">(</span>df_selected<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>● <strong>Handle missing values:</strong> Here, any rows with missing data are removed using <code>na.omit()</code>. An alternative approach might be to fill missing values with some value (like mean or median), but that’s not done here.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Check for missing values and handle them appropriately</span></span><br><span class="line"></span><br><span class="line">df_selected <span class="operator">&lt;-</span> df_selected <span class="operator">%&gt;%</span></span><br><span class="line">filter<span class="punctuation">(</span><span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>income<span class="punctuation">)</span><span class="punctuation">,</span> <span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>credit_risk_score<span class="punctuation">)</span><span class="punctuation">,</span> <span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>days_since_request<span class="punctuation">)</span><span class="punctuation">,</span> <span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>proposed_credit_limit<span class="punctuation">)</span><span class="punctuation">,</span> <span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>customer_age<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">● K<span class="operator">-</span>means clustering<span class="operator">:</span> Using the kmeans<span class="punctuation">(</span><span class="punctuation">)</span> <span class="keyword">function</span><span class="punctuation">,</span> we perform k<span class="operator">-</span>means clustering on df_selected. The set.seed<span class="punctuation">(</span><span class="number">123</span><span class="punctuation">)</span> is used <span class="keyword">for</span> reproducibility.</span><br><span class="line"></span><br><span class="line"><span class="comment"># K-means clustering</span></span><br><span class="line"></span><br><span class="line">set.seed<span class="punctuation">(</span><span class="number">123</span><span class="punctuation">)</span> <span class="comment"># for reproducibility</span></span><br><span class="line">k <span class="operator">&lt;-</span> 6</span><br><span class="line">km_result <span class="operator">&lt;-</span> ml_kmeans<span class="punctuation">(</span>df_selected<span class="punctuation">,</span> centers <span class="operator">=</span> k<span class="punctuation">,</span> features <span class="operator">=</span> colnames<span class="punctuation">(</span>df_selected<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>● <strong>Check the cluster sizes and centers:</strong> The script prints the sizes of the clusters (i.e., how many observations each cluster contains) and the cluster centers (i.e., the mean value of each variable in each cluster).</p>
+<img src="/medias/Fraud/Picture23.png" class="img-large" alt="">
+
+<p>● <strong>Apply PCA to reduce dimensions:</strong> Principal Component Analysis (PCA) is used to reduce the dimensionality of the data, making it easier to visualize. PCA finds a new set of dimensions such that all the dimensions are orthogonal (uncorrelated) and capture the maximum amount of variation in the data.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ApplyPCA for visualization</span></span><br><span class="line"></span><br><span class="line">df_tbl <span class="operator">&lt;-</span> sdf_predict<span class="punctuation">(</span>km_result<span class="punctuation">,</span> df_selected<span class="punctuation">)</span> <span class="operator">%&gt;%</span> collect<span class="punctuation">(</span><span class="punctuation">)</span></span><br><span class="line">pca <span class="operator">&lt;-</span> prcomp<span class="punctuation">(</span>unlist<span class="punctuation">(</span>df_tbl<span class="operator">$</span>features<span class="punctuation">)</span><span class="punctuation">,</span> center <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> scale. <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br><span class="line">pca_df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span>principal_component_1 <span class="operator">=</span> pca<span class="operator">$</span>x<span class="punctuation">[</span><span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">]</span><span class="punctuation">,</span> principal_component_2 <span class="operator">=</span> pca<span class="operator">$</span>x<span class="punctuation">[</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">]</span><span class="punctuation">,</span> cluster <span class="operator">=</span> df_tbl<span class="operator">$</span>prediction<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>● <strong>Plotting the clusters:</strong> The <code>km_result$centers</code> output shows the center (mean value) of each cluster for each variable. To make it clearer, let’s plot it. A scatter plot of the first two principal components is created. Each point represents an observation in the data and is colored according to the cluster it belongs to.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>pca_df<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> principal_component_1<span class="punctuation">,</span> y <span class="operator">=</span> principal_component_2<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">geom_point<span class="punctuation">(</span>aes<span class="punctuation">(</span>color <span class="operator">=</span> as.factor<span class="punctuation">(</span>cluster<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">labs<span class="punctuation">(</span>color <span class="operator">=</span> <span class="string">&quot;Cluster&quot;</span><span class="punctuation">,</span> title <span class="operator">=</span> <span class="string">&quot;Cluster Analysis of Customer Data&quot;</span><span class="punctuation">,</span> x <span class="operator">=</span> <span class="string">&quot;Principal Component 1&quot;</span><span class="punctuation">,</span> y <span class="operator">=</span> <span class="string">&quot;Principal Component 2&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture24.png" class="img-large" alt="">
+
+<p>Cluster 1: These are customers with slightly below-average income and much lower than average credit risk score. They requested their credit a very long time ago (significantly higher than average days since request) and have a much lower than average proposed credit limit. They are slightly younger than the average customer.</p>
+<p>Cluster 2: These are customers with significantly above-average income and below-average credit risk score. They recently requested their credit (below-average days since request) and have a lower than average proposed credit limit. They are much younger than the average customer.</p>
+<p>Cluster 3: These are customers with even higher income, with a lower than average credit risk score. They also recently requested their credit (below-average days since request) and have a lower than average proposed credit limit. However, they are significantly older than the average customer.</p>
+<p><strong>Cluster 4:</strong> These are customers with above-average income and a much higher than average credit risk score. They requested their credit quite a while ago (below-average days since request) and have a much higher than average proposed credit limit. They are slightly older than the average customer.</p>
+<p>Cluster 5: These customers have much lower than average income and a lower than average credit risk score. They recently requested their credit (around average days since request) and have a lower than average proposed credit limit. They are much younger than the average customer.</p>
+<p>Cluster 6: These customers also have much lower than average income and a lower than average credit risk score. They recently requested their credit (below-average days since request) and have a lower than average proposed credit limit. However, they are significantly older than the average customer.</p>
+<p>● <strong>Assign cluster labels to the original data:</strong> The cluster labels from our k-means clustering are added back to the original data frame.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assign the cluster labels back to the original data</span></span><br><span class="line">df <span class="operator">&lt;-</span> sdf_predict<span class="punctuation">(</span>km_result<span class="punctuation">,</span> df_selected<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>● <strong>Calculate fraud rates by cluster:</strong> The script then calculates the mean of fraud_bool within each cluster, which gives the proportion of fraudulent transactions in each cluster.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Calculate the proportion of fraudulent transactions within each cluster</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># As &#x27;fraud_bool&#x27; is not mentioned in the selected columns, assuming its available in the original dataframe</span></span><br><span class="line"></span><br><span class="line">Base_with_fraud <span class="operator">&lt;-</span> Base_tbl <span class="operator">%&gt;%</span></span><br><span class="line">mutate<span class="punctuation">(</span>cluster <span class="operator">=</span> df<span class="operator">$</span>prediction<span class="punctuation">)</span> <span class="operator">%&gt;%</span></span><br><span class="line">group_by<span class="punctuation">(</span>cluster<span class="punctuation">)</span> <span class="operator">%&gt;%</span></span><br><span class="line">summarise<span class="punctuation">(</span>fraud_rate <span class="operator">=</span> mean<span class="punctuation">(</span>fraud_bool<span class="punctuation">)</span><span class="punctuation">,</span> .groups <span class="operator">=</span> <span class="string">&#x27;drop&#x27;</span><span class="punctuation">)</span></span><br><span class="line">print<span class="punctuation">(</span>Base_with_fraud<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<img src="/medias/Fraud/Picture25.png" class="img-large" alt="">
+
+<p>This table shows the rate of fraudulent transactions (fraud_rate) in each of the clusters that were identified in your k-means clustering analysis:</p>
+<p>Cluster 1: Approximately 1.1% of transactions in this cluster were fraudulent.</p>
+<p>Cluster 2: Approximately 0.64% of transactions in this cluster were fraudulent.</p>
+<p>Cluster 3: Approximately 1.37% of transactions in this cluster were fraudulent.</p>
+<p><strong>Cluster 4: Approximately 2.31% of transactions in this cluster were fraudulent.</strong></p>
+<p>Cluster 5: Approximately 0.35% of transactions in this cluster were fraudulent.</p>
+<p>Cluster 6: Approximately 0.82% of transactions in this cluster were fraudulent.</p>
+<p>These rates represent the proportion of transactions that were marked as fraudulent within each cluster. For example, in Cluster 4, out of every 100 transactions, about 2.31 are expected to be fraudulent, based on this analysis. This is the highest rate among all the clusters, which suggests that transactions in Cluster 4 have a higher likelihood of being fraudulent.</p>
+<p>Therefore, we might want to focus more resources on <strong>transactions from Cluster 4</strong>, as they seem to have a <strong>higher risk of fraud</strong>. For instance, these transactions could be subjected to additional checks or stricter control measures to prevent fraud.</p>
+<p><strong>Disconnect from Spark:</strong> The connection to Spark is terminated using the <code>spark_disconnect()</code> function.</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>The application of clustering to identify potentially fraudulent transactions in our customer dataset can yield several notable benefits:</p>
+<p>I. Enhanced Fraud Detection: By understanding the specifics of a transaction, the fraud detection functionality can be significantly improved. This helps us protect our business integrity and our customers’ financial interests more effectively.</p>
+<p>II. Proactive Security Measures: If the system understands the specifics of a transaction, it can proactively flag suspicious activities, thereby potentially minimizing financial loss and increasing customer trust.</p>
+<p>III. Insightful Data Analytics: This approach would allow our business to analyze transaction trends, identify patterns, and make more informed decisions related to customer behavior and fraud prevention.</p>
+<p>IV. Automated Alert System: This model can assist in automatically flagging potentially fraudulent transactions based on the clusters formed, making the process more efficient and reducing the time to take necessary actions.</p>
+<h2 id="Recommendations"><a href="#Recommendations" class="headerlink" title="Recommendations"></a>Recommendations</h2><p>I. Credit Risk Score Analysis: Since there is a positive correlation between credit risk score and fraud, it is recommended to closely monitor accounts with higher credit risk scores for potentially fraudulent activities.</p>
+<p>II. Age-Based Analysis: As there is a weak positive correlation between customer age and fraud, it might be beneficial to analyze the age distribution of customers involved in fraud to develop age-specific fraud detection strategies.</p>
+<p>III. Address Verification: Given the negative correlation between previous and current address months count, it is advisable to incorporate address verification in the fraud detection process, especially for customers who have recently changed addresses.</p>
+<p>IV. Session Management: The negative correlation between keep-alive sessions and fraud suggests that implementing robust session management strategies can potentially reduce the likelihood of fraud.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>Bank account fraud dataset suite (NeurIPS 2022). (n.d.). Kaggle: Your Machine Learning and<br>Data Science Community.<br><a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets/sgpjesus/bank-account-fraud-dataset-neurips-2022?select=Base.csv">https://www.kaggle.com/datasets/sgpjesus/bank-account-fraud-dataset-neurips-2022?select=Base.csv</a></p>
+<p>Apache sparkTM - unified engine for large-scale data analytics. Apache SparkTM - Unified<br>Engine for large-scale data analytics. (n.d.). <a target="_blank" rel="noopener" href="https://spark.apache.org/">https://spark.apache.org/</a></p>
+<p>Wei, T., &amp; Simko, V. (2021). R package “corrplot”: Visualization of a correlation matrix (Version 0.90).<a target="_blank" rel="noopener" href="https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html">https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html</a></p>
+<p>SparkR (R on spark). SparkR (R on Spark) - Spark 3.4.1 Documentation. (n.d.).<br><a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/sparkr.html">https://spark.apache.org/docs/latest/sparkr.html</a></p>
+<p>Javier Luraschi, K. K. (n.d.). Mastering spark with R. Chapter 2 Getting Started.<br><a target="_blank" rel="noopener" href="https://therinspark.com/starting.html#over">https://therinspark.com/starting.html#over</a></p>
+<p>Google. (n.d.). Clustering algorithms | machine learning | google for developers. Google. <a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/clustering/clustering-algorithms">https://developers.google.com/machine-learning/clustering/clustering-algorithms</a></p>
+<p>Seif, G. (2022, February 11). The 5 clustering algorithms data scientists need to know. Medium. <a target="_blank" rel="noopener" href="https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68">https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68</a></p>
+<h4 id="Project-Members"><a href="#Project-Members" class="headerlink" title="Project Members:"></a>Project Members:</h4><ul>
+<li>Xiaoge Zhang</li>
+<li>Yuchen Zhao</li>
+</ul>
+<style>
+p {
+    text-indent: 2em;
+}
+</style>
+
+<style>
+.img-large {
+    width: 700px;
+    height:400;
+    display: block;
+    margin: 0 auto;
+}
+}
+</style>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Xiaoge Zhang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.xiaogezhang.org/2023/07/20/Project-BankFraud/">http://www.xiaogezhang.org/2023/07/20/Project-BankFraud/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Xiaoge Zhang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Project/">
+                                    <span class="chip bg-color">Project</span>
+                                </a>
+                            
+                                <a href="/tags/Data-Anlysis/">
+                                    <span class="chip bg-color">Data Anlysis</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2023/07/20/Project-BankFraud/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Project:Big Data Analysis on Bank Account Fraud using Hadoop and Spark">
+                        
+                        <span class="card-title">Project:Big Data Analysis on Bank Account Fraud using Hadoop and Spark</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Xiaoge Zhang
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Project/">
+                        <span class="chip bg-color">Project</span>
+                    </a>
+                    
+                    <a href="/tags/Data-Anlysis/">
+                        <span class="chip bg-color">Data Anlysis</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/07/20/Award-2023%20Hackathon/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Award:Winner of 2023 Husky Hackathon">
+                        
+                        <span class="card-title">Award:Winner of 2023 Husky Hackathon</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Xiaoge Zhang
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Award/">
+                        <span class="chip bg-color">Award</span>
+                    </a>
+                    
+                    <a href="/tags/Project/">
+                        <span class="chip bg-color">Project</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+   <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+ 
+
+  <div
+    class="container row center-align"
+    style="margin-bottom: 0px !important;"
+  >
+    <div class="col s12 m8 l8 copy-right">
+      Copyright&nbsp;&copy; 
+      <span id="year"
+        >2019-2023</span
+      >
+      
+      <a href="/about" target="_blank"
+        >Xiaoge Zhang</a
+      >
+      |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+      |&nbsp;Theme&nbsp;<a href="https://xiaogezhan.github.io/" target="_blank"
+        >Matery</a
+      >
+      
+      <br />
+         
+       
+      <span id="busuanzi_container_site_pv">
+        &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+        <span id="busuanzi_value_site_pv" class="white-color"></span>
+      </span>
+       
+      <span id="busuanzi_container_site_uv">
+        &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+        <span id="busuanzi_value_site_uv" class="white-color"></span>
+      </span>
+      
+      <br />
+
+      <!-- 运行天数提醒. -->
+      
+      <br />
+      
+    </div>
+    <div class="col s12 m4 l4 social-link social-statis">
+      
+<a
+  href="https://github.com/xiaogeZhan"
+  class="tooltipped"
+  target="_blank"
+  data-tooltip="Visit My GitHub"
+  data-position="top"
+  data-delay="50"
+>
+  <i class="fab fa-github"></i>
+</a>
+ 
+<a
+  href="mailto:zhang.xiaoge@northeastern.edu"
+  class="tooltipped"
+  target="_blank"
+  data-tooltip="Email Me"
+  data-position="top"
+  data-delay="50"
+>
+  <i class="fas fa-envelope-open"></i>
+   
+  <a
+    href="https://www.linkedin.com/in/xiaoge-zhang-944b75162/"
+    class="tooltipped"
+    target="_blank"
+    data-tooltip="Connect With My Linkedin"
+    data-position="top"
+    data-delay="50"
+  >
+    <i class="fab fa-linkedin"></i>
+  </a>
+       
+</a>
+
+    </div>
+  </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
